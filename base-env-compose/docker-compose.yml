@@ -11,6 +11,14 @@ services:
    privileged: true #解决mysql容器启动后立即退出
    volumes:
     - "/opt/mall-env/data/mysql:/var/lib/mysql"
+    
+ zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zook
+    hostname: zook
+    ports:
+      - "2181:2181"
+      
  elasticsearch:
   image: elasticsearch:6.6.1
   container_name: es
@@ -59,12 +67,7 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
- zookeeper:
-    image: wurstmeister/zookeeper
-    container_name: zook
-    hostname: zook
-    ports:
-      - "2181:2181"
+
  rabbitmq:
     image: rabbitmq:management
     ports:
@@ -89,6 +92,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - admin.registry.address=zookeeper://121.36.1.22:2181
+      - dubbo.registry.address=zookeeper://121.36.1.22:2181
       - dubbo.admin.root.password=root
       - dubbo.admin.guest.password=guest
+      - dubbo-group.address=dubbo-prod
