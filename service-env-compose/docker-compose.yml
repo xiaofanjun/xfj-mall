@@ -1,0 +1,108 @@
+version: '3'
+services:
+ userServer1:
+   image: user-service:01
+   container_name: userApp1
+   restart: always
+   ports:
+    - "8081:8081"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20881:20881"
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20881
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20881
+ orderServer1:
+   image: order-service:01
+   container_name: orderApp1
+   restart: always
+   ports:
+    - "8071:8071"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20871:20871"    
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20871
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20871
+ commnetServer1:
+   image: comment-service:01
+   container_name: commentApp1
+   restart: always
+   ports:
+    - "8061:8061"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20861:20861"    
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20861
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20861    
+ shoppingServer1:
+   image: shopping-service:01
+   container_name: shoppingApp1
+   restart: always
+   ports:
+    - "8051:8051"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20851:20851"    
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20851
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20851
+ couponServer1:
+   image: coupon-service:01
+   container_name: couponApp1
+   restart: always
+   ports:
+    - "8041:8041"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20841:20841"    
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20841
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20841
+ payServer1:
+   image: pay-service:01
+   container_name: payApp1
+   restart: always
+   ports:
+    - "8031:8031"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20831:20831"    
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20831
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20831
+ search:
+   image: search-service:01
+   container_name: searchApp1
+   restart: always
+   ports:
+    - "8021:8021"
+    #前面为注册到注册中心的端口，后面为docker监听的端口
+    - "20821:20821"    
+   environment:
+    #注册到注册中心的IP，这里我们选择宿主机的IP
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    #注册到注册中心的端口
+    DUBBO_PORT_TO_REGISTRY: 20821
+    #绑定端口
+    DUBBO_PORT_TO_BIND: 20821    
+    

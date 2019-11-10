@@ -1,0 +1,94 @@
+version: '3'
+services:
+ db1:
+   image: mysql:5.7
+   container_name: mysql
+   ports:
+    - "3306:3306"
+   environment:
+    - MYSQL_ROOT_PASSWORD=zhangqiang
+    - MYSQL_DATABASE=gp-mall
+   privileged: true #解决mysql容器启动后立即退出
+   volumes:
+    - "/opt/mall-env/data/mysql:/var/lib/mysql"
+ elasticsearch:
+  image: elasticsearch:6.6.1
+  container_name: es
+  environment:
+    - cluster.name=elasticsearch
+    - bootstrap.memory_lock=true
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  ulimits:
+    memlock:
+      soft: -1
+      hard: -1
+  ports:
+    - 9200:9200
+    - 9300:9300
+  privileged: true 
+  volumes:
+    - "/opt/mall-env/data/es:/usr/share/elasticsearch/data"
+ kibana:
+  image: kibana:6.6.1
+  container_name: kibana
+  environment:
+    SERVER_NAME:
+    ELASTICSEARCH_HOSTS: http://localhost:9200
+  ports:
+    - 5601:5601
+ kafka:
+  image: wurstmeister/kafka
+  container_name: kafka
+  ports:
+    - "9092:9092"
+  volumes:
+      - "/opt/mall-env/data/kakfa:/var/run/docker.sock" 
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: localhost
+    KAFKA_ADVERTISED_PORT: 9092
+    #      HOSTNAME_COMMAND: "cat /etc/hosts | tail -1 | awk '{print $$1}'"
+    #      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:9094
+    #      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+    #      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+    #      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+    KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    KAFKA_JVM_PERFORMANCE_OPTS: " -Xmx256m -Xms256m"
+    
+ redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+ zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zook
+    hostname: zook
+    ports:
+      - "2181:2181"
+ rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "25672:25672"
+      - "5672:5672"
+      - "15672:15672"
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: zhangqiang
+      RABBITMQ_NODENAME: rabbitmq
+      RABBITMQ_ERLANG_COOKIE: CURIOAPPLICATION
+ 
+ admin:
+    image: chenchuxin/dubbo-admin
+    container_name: dub-admin
+    depends_on:
+      - zookeeper
+    ports:
+      - "8080:8080"
+    environment:
+      - admin.registry.address=zookeeper://121.36.1.22:2181
+      - dubbo.admin.root.password=root
+      - dubbo.admin.guest.password=guest
