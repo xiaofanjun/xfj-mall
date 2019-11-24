@@ -10,15 +10,9 @@ services:
     - MYSQL_DATABASE=gp-mall
    privileged: true #解决mysql容器启动后立即退出
    volumes:
-    - "/opt/mall-env/data/mysql:/var/lib/mysql"
-    
- zookeeper:
-    image: wurstmeister/zookeeper
-    container_name: zook
-    hostname: zook
-    ports:
-      - "2181:2181"
-      
+    - "/opt/mall-env/custom-config/mysql/data:/var/lib/mysql" #解决数据持久化
+    - "/opt/mall-env/custom-config/mysql/config:/etc/mysql/conf.d" #加载自定义配置文件
+    - "/opt/mall-env/custom-config/mysql/log:/var/log/mysql" #指定mysql日志输出目录
  elasticsearch:
   image: elasticsearch:6.6.1
   container_name: es
@@ -35,7 +29,8 @@ services:
     - 9300:9300
   privileged: true 
   volumes:
-    - "/opt/mall-env/data/es:/usr/share/elasticsearch/data"
+    - "/usr/share/elasticsearch/data:/usr/share/elasticsearch/data"
+    
  kibana:
   image: kibana:6.6.1
   container_name: kibana
@@ -44,13 +39,16 @@ services:
     ELASTICSEARCH_HOSTS: http://localhost:9200
   ports:
     - 5601:5601
+    
  kafka:
   image: wurstmeister/kafka
   container_name: kafka
+  depends_on:
+      - zookeeper
   ports:
     - "9092:9092"
   volumes:
-      - "/opt/mall-env/data/kakfa:/var/run/docker.sock" 
+    - "/opt/mall-env/custom-config/kafka/logs:/opt/kafka_2.12-2.3.0/logs" #日志文件
   environment:
     KAFKA_ADVERTISED_HOST_NAME: localhost
     KAFKA_ADVERTISED_PORT: 9092
@@ -60,14 +58,19 @@ services:
     #      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
     #      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    KAFKA_JVM_PERFORMANCE_OPTS: " -Xmx256m -Xms256m"
+    KAFKA_JVM_PERFORMANCE_OPTS: "-Xmx256m -Xms256m"
     
  redis:
     image: redis
     container_name: redis
     ports:
       - "6379:6379"
-
+ zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zook
+    hostname: zook
+    ports:
+      - "2181:2181"
  rabbitmq:
     image: rabbitmq:management
     ports:
@@ -84,13 +87,15 @@ services:
       RABBITMQ_NODENAME: rabbitmq
       RABBITMQ_ERLANG_COOKIE: CURIOAPPLICATION
  
- admin:
+ duboo-admin:
     image: chenchuxin/dubbo-admin
     container_name: dub-admin
     depends_on:
       - zookeeper
     ports:
       - "8080:8080"
+    volumes:
+      - "/opt/mall-env/custom-config/dubbo-admin/logs:/usr/local/tomcat/logs" #指定日志文件目录
     environment:
       - dubbo.registry.address=zookeeper://121.36.1.22:2181
       - dubbo.admin.root.password=root

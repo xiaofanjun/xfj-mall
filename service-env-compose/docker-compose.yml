@@ -1,7 +1,7 @@
 version: '3'
 services:
  userServer1:
-   image: user-service:01
+   image: user-service:0.1
    container_name: userApp1
    restart: always
    ports:
@@ -16,7 +16,7 @@ services:
     #绑定端口
     DUBBO_PORT_TO_BIND: 20881
  orderServer1:
-   image: order-service:01
+   image: order-service:0.1
    container_name: orderApp1
    restart: always
    ports:
@@ -31,7 +31,7 @@ services:
     #绑定端口
     DUBBO_PORT_TO_BIND: 20871
  commnetServer1:
-   image: comment-service:01
+   image: comment-service:0.1
    container_name: commentApp1
    restart: always
    ports:
@@ -46,7 +46,7 @@ services:
     #绑定端口
     DUBBO_PORT_TO_BIND: 20861    
  shoppingServer1:
-   image: shopping-service:01
+   image: shopping-service:0.1
    container_name: shoppingApp1
    restart: always
    ports:
@@ -61,7 +61,7 @@ services:
     #绑定端口
     DUBBO_PORT_TO_BIND: 20851
  couponServer1:
-   image: coupon-service:01
+   image: coupon-service:0.1
    container_name: couponApp1
    restart: always
    ports:
@@ -75,8 +75,8 @@ services:
     DUBBO_PORT_TO_REGISTRY: 20841
     #绑定端口
     DUBBO_PORT_TO_BIND: 20841
- payServer1:
-   image: pay-service:01
+ payServer:
+   image: pay-service:0.1
    container_name: payApp1
    restart: always
    ports:
@@ -90,8 +90,8 @@ services:
     DUBBO_PORT_TO_REGISTRY: 20831
     #绑定端口
     DUBBO_PORT_TO_BIND: 20831
- search:
-   image: search-service:01
+ searchServer1:
+   image: search-service:0.1
    container_name: searchApp1
    restart: always
    ports:
