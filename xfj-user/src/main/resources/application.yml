@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: xfj-user
+  profiles:
+    active: dev
+server:
+  port: 7080
