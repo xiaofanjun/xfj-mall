@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration= \
+  com.xfj.commons.tool.redisconfig.RedissonAutoConfiguration,\
+  com.xfj.commons.tool.zookeeperConfig.ZookeeperAutoConfiguration
