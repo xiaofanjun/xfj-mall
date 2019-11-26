@@ -1,16 +1,19 @@
 package com.xfj.commons.tool.exception;
 
+import lombok.Data;
+
 /**
  * @Author ZQ
- * @Description //TODO
+ * @Description //基础异常类
  * @Date 2019/11/24 19:24
  **/
+@Data
 public class BaseBusinessException extends RuntimeException {
-
+    //错误码
     protected String errorCode;
-
+    //错误信息
     protected String message;
-
+    //
     protected String extFields;
 
     public BaseBusinessException() {
@@ -48,49 +51,5 @@ public class BaseBusinessException extends RuntimeException {
         this.errorCode = errorCode;
         this.message = message;
         this.extFields = extFields;
-    }
-
-    /**
-     * Getter method for property <tt>errorCode</tt>.
-     *
-     * @return property value of errorCode
-     */
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    /**
-     * Setter method for property <tt>errorCode</tt>.
-     *
-     * @param errorCode value to be assigned to property errorCode
-     */
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getExtFields() {
-        return extFields;
-    }
-
-    public void setExtFields(String extFields) {
-        this.extFields = extFields;
-    }
-
-    /**
-     * Getter method for property <tt>message</tt>.
-     *
-     * @return property value of message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * Setter method for property <tt>message</tt>.
-     *
-     * @param message value to be assigned to property message
-     */
-    public void setMessage(String message) {
-        this.message = message;
     }
 }

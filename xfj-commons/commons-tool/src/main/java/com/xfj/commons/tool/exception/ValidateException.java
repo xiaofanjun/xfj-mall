@@ -2,7 +2,7 @@ package com.xfj.commons.tool.exception;
 
 /**
  * @Author ZQ
- * @Description //TODO
+ * @Description //自定义校验异常类
  * @Date 2019/11/24 19:25
  **/
 public class ValidateException extends BaseBusinessException {

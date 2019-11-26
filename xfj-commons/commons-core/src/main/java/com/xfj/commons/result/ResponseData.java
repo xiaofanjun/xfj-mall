@@ -1,63 +1,22 @@
 package com.xfj.commons.result;
 
+import lombok.Data;
+
 /**
  * @Author ZQ
- * @Description //TODO
+ * @Description 相应数据
  * @Date 2019/11/24 19:20
  **/
+@Data
 public class ResponseData<T> {
-
+    //是否返回成功
     private boolean success;
-
-    private String message; //消息
-
+    //返回消息
+    private String message;
+    //返回码
     private int code;
-
-    private T result; //返回的数据
-
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    /**
-     * 时间戳
-     */
+    //返回数据
+    private T result;
+    //时间戳
     private long timestamp = System.currentTimeMillis();
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getResult() {
-        return result;
-    }
-
-    public void setResult(T result) {
-        this.result = result;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
 }
