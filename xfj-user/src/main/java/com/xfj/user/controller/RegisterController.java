@@ -51,12 +51,12 @@ public class RegisterController {
         kaptchaCodeRequest.setCode(urRequest.getCaptcha());
         KaptchaCodeRS response = kaptchaService.validateKaptchaCode(kaptchaCodeRequest);
         if (!response.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
-            return new ResponseUtil<>().setErrorMsg(response.getMsg());
+            return new ResponseData(ResponseData.SERVER_ERROR, response.getMsg());
         }
         UserRegisterRS registerResponse = iUserRegisterService.register(urRequest);
-        if (registerResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
-            return new ResponseUtil().setData(null);
+        if (!registerResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
+            return new ResponseData(ResponseData.SERVER_ERROR, registerResponse.getMsg());
         }
-        return new ResponseUtil().setErrorMsg(registerResponse.getMsg());
+        return new ResponseData(true);
     }
 }
