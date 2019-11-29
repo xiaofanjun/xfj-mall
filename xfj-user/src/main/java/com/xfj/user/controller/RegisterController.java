@@ -7,10 +7,10 @@ import com.xfj.user.IKaptchaService;
 import com.xfj.user.IUserRegisterService;
 import com.xfj.user.annotation.Anoymous;
 import com.xfj.user.constants.SysRetCodeConstants;
-import com.xfj.user.dto.KaptchaCodeRequest;
-import com.xfj.user.dto.KaptchaCodeResponse;
-import com.xfj.user.dto.UserRegisterRequest;
-import com.xfj.user.dto.UserRegisterResponse;
+import com.xfj.user.rs.KaptchaCodeRS;
+import com.xfj.user.rs.UserRegisterRS;
+import com.xfj.user.vo.KaptchaCodeVO;
+import com.xfj.user.vo.UserRegisterVO;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,11 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * 腾讯课堂搜索【咕泡学院】
- * 官网：www.gupaoedu.com
- * 风骚的Zq 老师
- * create-date: 2019/7/23-12:43
- */
+ * @Author ZQ
+ * @Description 注册
+ * @Date 2019/11/27 20:25
+ **/
 @RestController
 @RequestMapping("/user")
 public class RegisterController {
@@ -35,29 +34,27 @@ public class RegisterController {
 
     @Reference(timeout = 3000)
     IKaptchaService kaptchaService;
+
+    /**
+     * @return com.xfj.commons.result.ResponseData
+     * @Author ZQ
+     * @Description 注册功能实现
+     * @Date 2019/11/27 20:35
+     * @Param [map, request]
+     **/
     @Anoymous
     @PostMapping("/register")
-    public ResponseData register(@RequestBody Map<String,String> map, HttpServletRequest request){
-        String userName=map.get("userName");
-        String userPwd=map.get("userPwd");
-        String captcha=map.get("captcha");
-        String email=map.get("email");
-        KaptchaCodeRequest kaptchaCodeRequest = new KaptchaCodeRequest();
+    public ResponseData register(@RequestBody UserRegisterVO urRequest, HttpServletRequest request) {
+        KaptchaCodeVO kaptchaCodeRequest = new KaptchaCodeVO();
         String uuid = CookieUtil.getCookieValue(request, "kaptcha_uuid");
         kaptchaCodeRequest.setUuid(uuid);
-        kaptchaCodeRequest.setCode(captcha);
-        KaptchaCodeResponse response = kaptchaService.validateKaptchaCode(kaptchaCodeRequest);
+        kaptchaCodeRequest.setCode(urRequest.getCaptcha());
+        KaptchaCodeRS response = kaptchaService.validateKaptchaCode(kaptchaCodeRequest);
         if (!response.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
             return new ResponseUtil<>().setErrorMsg(response.getMsg());
         }
-
-        UserRegisterRequest registerRequest=new UserRegisterRequest();
-        registerRequest.setUserName(userName);
-        registerRequest.setUserPwd(userPwd);
-        registerRequest.setEmail(email);
-        UserRegisterResponse registerResponse=iUserRegisterService.register(registerRequest);
-
-        if(registerResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
+        UserRegisterRS registerResponse = iUserRegisterService.register(urRequest);
+        if (registerResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
             return new ResponseUtil().setData(null);
         }
         return new ResponseUtil().setErrorMsg(registerResponse.getMsg());
