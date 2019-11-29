@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * @Author ZQ
- * @Description
+ * @Description 添加这个注解的就不需要token认证了
  * @Date 2019/10/13 20:54
  **/
 @Target({ElementType.METHOD, ElementType.TYPE})

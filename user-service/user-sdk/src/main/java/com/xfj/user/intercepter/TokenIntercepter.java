@@ -21,6 +21,9 @@ import java.lang.reflect.Method;
 /**
  * @Author ZQ
  * @Description 用来实现token拦截认证
+ * <p>
+ * token 作用：可以避免重复登录，从而减少对数据的交互次数
+ * 作用二：避免表单重复提交，不过在这里目前还没有用到
  * @Date 2019/10/13 20:32
  **/
 public class TokenIntercepter extends HandlerInterceptorAdapter {
@@ -32,6 +35,17 @@ public class TokenIntercepter extends HandlerInterceptorAdapter {
 
     public static String USER_INFO_KEY = "userInfo";
 
+    /**
+     * @return boolean
+     * @Author ZQ
+     * @Description 拦截所有请求
+     * <p>
+     * 校验是否有Anoymous 注解，没有证明需要进行token校验
+     * <p>
+     * token 校验通过 存放一下用户信息到request中
+     * @Date 2019/11/29 15:15
+     * @Param [request, response, handler]
+     **/
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod)) {
