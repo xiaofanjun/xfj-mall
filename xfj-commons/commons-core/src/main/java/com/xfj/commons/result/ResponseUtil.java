@@ -2,9 +2,10 @@ package com.xfj.commons.result;
 
 /**
  * @Author ZQ
- * @Description 与前端交互的Response
+ * @Description
  * @Date 2019/11/24 19:20
  **/
+@Deprecated
 public class ResponseUtil<T> {
 
     private ResponseData<T> responseData;
@@ -19,7 +20,7 @@ public class ResponseUtil<T> {
         responseData = new ResponseData<>();
         responseData.setSuccess(true);
         responseData.setMessage("success");
-        responseData.setCode(SUCCESS);
+        responseData.setCode(String.valueOf(SUCCESS));
     }
 
     /**
@@ -30,16 +31,18 @@ public class ResponseUtil<T> {
      * @Param [t]
      **/
     public ResponseData<T> setData(T t) {
-        this.responseData.setResult(t);
+        if (null != t) {
+            this.responseData.setResult(t);
+        }
         this.responseData.setSuccess(true);
-        responseData.setCode(SUCCESS);
+        responseData.setCode(String.valueOf(SUCCESS));
         return this.responseData;
     }
 
     /**
      * @return com.xfj.commons.result.ResponseData<T>
      * @Author ZQ
-     * @Description 成功+自定义错误信息
+     * @Description 成功+自定义消息
      * @Date 2019/11/27 19:43
      * @Param [t, msg]
      **/
@@ -47,7 +50,7 @@ public class ResponseUtil<T> {
         this.responseData.setResult(t);
         this.responseData.setSuccess(true);
         this.responseData.setMessage(msg);
-        responseData.setCode(SUCCESS);
+        responseData.setCode(String.valueOf(SUCCESS));
         return this.responseData;
     }
 
@@ -61,7 +64,7 @@ public class ResponseUtil<T> {
     public ResponseData<T> setErrorMsg(String msg) {
         this.responseData.setSuccess(false);
         this.responseData.setMessage(msg);
-        responseData.setCode(SERVER_ERROR);
+        responseData.setCode(String.valueOf(SERVER_ERROR));
         return this.responseData;
     }
 
@@ -75,7 +78,7 @@ public class ResponseUtil<T> {
     public ResponseData<T> setErrorMsg(Integer code, String msg) {
         this.responseData.setSuccess(false);
         this.responseData.setMessage(msg);
-        responseData.setCode(code);
+        responseData.setCode(String.valueOf(code));
         return this.responseData;
     }
 }
