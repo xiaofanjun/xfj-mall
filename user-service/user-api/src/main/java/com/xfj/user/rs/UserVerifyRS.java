@@ -4,7 +4,7 @@ import com.xfj.commons.result.AbstractResponse;
 
 /**
  * @Author ZQ
- * @Description //TODO
+ * @Description
  * @Date 2019/11/27 21:19
  **/
 public class UserVerifyRS extends AbstractResponse {

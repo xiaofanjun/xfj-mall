@@ -12,7 +12,7 @@ import java.security.SecureRandom;
 
 /**
  * @Author ZQ
- * @Description
+ * @Description 加密工具类
  * @Date 2019/11/27 21:27
  **/
 @Slf4j

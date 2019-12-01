@@ -1,6 +1,4 @@
-package com.xfj.user.services;/**
- * Created by mic on 2019/7/30.
- */
+package com.xfj.user.services;
 
 import com.xfj.user.IMemberService;
 import com.xfj.user.IUserLoginService;
@@ -12,6 +10,7 @@ import com.xfj.user.rs.CheckAuthRS;
 import com.xfj.user.rs.HeadImageRS;
 import com.xfj.user.rs.QueryMemberRS;
 import com.xfj.user.rs.UpdateMemberRS;
+import com.xfj.user.services.bl.MemberServiceBl;
 import com.xfj.user.utils.ExceptionProcessorUtils;
 import com.xfj.user.vo.CheckAuthVO;
 import com.xfj.user.vo.HeadImageVO;
@@ -32,12 +31,10 @@ public class MemberServiceImpl implements IMemberService {
 
     @Autowired
     MemberMapper memberMapper;
-
-    @Autowired
-    IUserLoginService userLoginService;
-
     @Autowired
     MemberConverter memberConverter;
+    @Autowired
+    private MemberServiceBl memberServiceBl;
 
     /**
      * 根据用户id查询用户会员信息
@@ -67,29 +64,24 @@ public class MemberServiceImpl implements IMemberService {
 
     @Override
     public HeadImageRS updateHeadImage(HeadImageVO request) {
-        HeadImageRS response = new HeadImageRS();
-        //TODO
+        HeadImageRS response = null;
+        try {
+            request.requestCheck();
+            response = memberServiceBl.updateHeadImage(request);
+        } catch (Exception e) {
+            log.error("MemberServiceImpl.updateHeadImage Occur Exception :" + e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
+        }
         return response;
     }
 
     @Override
     public UpdateMemberRS updateMember(UpdateMemberVO request) {
-        UpdateMemberRS response = new UpdateMemberRS();
+        log.error("MemberServiceImpl.updateMember request :" + request);
+        UpdateMemberRS response = null;
         try {
             request.requestCheck();
-            CheckAuthVO checkAuthRequest = new CheckAuthVO();
-            checkAuthRequest.setToken(request.getToken());
-            CheckAuthRS authResponse = userLoginService.validToken(checkAuthRequest);
-            if (!authResponse.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {
-                response.setCode(authResponse.getCode());
-                response.setMsg(authResponse.getMsg());
-                return response;
-            }
-            Member member = memberConverter.updateReq2Member(request);
-            int row = memberMapper.updateByPrimaryKeySelective(member);
-            response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
-            response.setCode(SysRetCodeConstants.SUCCESS.getCode());
-            log.info("MemberServiceImpl.updateMember effect row :" + row);
+            response = memberServiceBl.updateMember(request);
         } catch (Exception e) {
             log.error("MemberServiceImpl.updateMember Occur Exception :" + e);
             ExceptionProcessorUtils.wrapperHandlerException(response, e);

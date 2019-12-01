@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * @Author ZQ
- * @Description //TODO
+ * @Description 登录相关业务逻辑
  * @Date 2019/11/27 21:24
  **/
 @Slf4j
@@ -38,6 +38,13 @@ public class UserLoginServiceImpl implements IUserLoginService {
     @Autowired
     MemberMapper memberMapper;
 
+    /**
+     * @return com.xfj.user.rs.UserLoginRS
+     * @Author ZQ
+     * @Description 登录成功创建加密token
+     * @Date 2019/11/29 15:39
+     * @Param [request]
+     **/
     @Override
     public UserLoginRS login(UserLoginVO request) {
         log.info("Begin UserLoginServiceImpl.login: request:" + request);
@@ -67,7 +74,7 @@ public class UserLoginServiceImpl implements IUserLoginService {
             Map<String, Object> map = new HashMap<>();
             map.put("uid", member.get(0).getId());
             map.put("file", member.get(0).getFile());
-
+            //创建token
             String token = JwtTokenUtils.builder().msg(JSON.toJSON(map).toString()).build().creatJwtToken();
             response = UserConverterMapper.INSTANCE.converter(member.get(0));
             response.setToken(token);
@@ -81,6 +88,13 @@ public class UserLoginServiceImpl implements IUserLoginService {
         return response;
     }
 
+    /**
+     * @return com.xfj.user.rs.CheckAuthRS
+     * @Author ZQ
+     * @Description 校验token
+     * @Date 2019/11/29 15:33
+     * @Param [request]
+     **/
     @Override
     public CheckAuthRS validToken(CheckAuthVO request) {
         log.info("Begin UserLoginServiceImpl.validToken: request:" + request);

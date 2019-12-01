@@ -13,14 +13,14 @@ import org.joda.time.DateTime;
 
 /**
  * @Author ZQ
- * @Description
+ * @Description jwt(json web token) 工具类
  * @Date 2019/11/27 21:27
  **/
 @Slf4j
 @Builder
 public class JwtTokenUtils {
     /**
-     * 传输信息，必须是json格式
+     * 传输信息，必须是json格式 这里的 @Builder 相当于是个构造函数
      */
     private String msg;
     /**
@@ -31,6 +31,13 @@ public class JwtTokenUtils {
 
     private final String secret = "324iu23094u598ndsofhsiufhaf_+0wq-42q421jiosadiusadiasd";
 
+    /**
+     * @return java.lang.String
+     * @Author ZQ
+     * @Description 创建Token, 并加密
+     * @Date 2019/11/29 13:44
+     * @Param []
+     **/
     public String creatJwtToken() {
         msg = new AESUtil(msg).encrypt();//先对信息进行aes加密(防止被破解）
         String token = null;

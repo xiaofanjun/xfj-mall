@@ -18,6 +18,8 @@ services:
  orderServer1:
    image: order-service:0.1
    container_name: orderApp1
+   depends_on:
+    - userServer1
    restart: always
    ports:
     - "8071:8071"
@@ -34,6 +36,8 @@ services:
    image: comment-service:0.1
    container_name: commentApp1
    restart: always
+   depends_on:
+    - orderServer1
    ports:
     - "8061:8061"
     #前面为注册到注册中心的端口，后面为docker监听的端口
@@ -49,6 +53,8 @@ services:
    image: shopping-service:0.1
    container_name: shoppingApp1
    restart: always
+   depends_on:
+    - commnetServer1
    ports:
     - "8051:8051"
     #前面为注册到注册中心的端口，后面为docker监听的端口
@@ -64,6 +70,8 @@ services:
    image: coupon-service:0.1
    container_name: couponApp1
    restart: always
+   depends_on:
+    - shoppingServer1
    ports:
     - "8041:8041"
     #前面为注册到注册中心的端口，后面为docker监听的端口
@@ -79,6 +87,8 @@ services:
    image: pay-service:0.1
    container_name: payApp1
    restart: always
+   depends_on:
+    - couponServer1
    ports:
     - "8031:8031"
     #前面为注册到注册中心的端口，后面为docker监听的端口
@@ -94,6 +104,8 @@ services:
    image: search-service:0.1
    container_name: searchApp1
    restart: always
+   depends_on:
+    - payServer
    ports:
     - "8021:8021"
     #前面为注册到注册中心的端口，后面为docker监听的端口

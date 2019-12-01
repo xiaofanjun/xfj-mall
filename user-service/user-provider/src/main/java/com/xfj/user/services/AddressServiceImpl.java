@@ -6,9 +6,11 @@ import com.xfj.user.converter.AddressConverter;
 import com.xfj.user.dal.entitys.Address;
 import com.xfj.user.dal.persistence.AddressMapper;
 import com.xfj.user.rs.*;
+import com.xfj.user.services.bl.AddressServiceBl;
 import com.xfj.user.utils.ExceptionProcessorUtils;
 import com.xfj.user.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.asm.Advice;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
@@ -26,9 +28,10 @@ public class AddressServiceImpl implements IAddressService {
 
     @Autowired
     AddressMapper addressMapper;
-
     @Autowired
     AddressConverter converter;
+    @Autowired
+    AddressServiceBl addressServiceBl;
 
     @Override
     public AddressListRS addressList(AddressListVO request) {
@@ -69,15 +72,10 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     public AddAddressRS createAddress(AddAddressVO request) {
         log.error("AddressServiceImpl.createAddress request :" + request);
-        AddAddressRS response = new AddAddressRS();
+        AddAddressRS response = null;
         try {
             request.requestCheck();
-            checkAddressDefaultUnique(request.getIsDefault() != null && request.getIsDefault() == 1, request.getUserId());
-            Address address = converter.req2Address(request);
-            int row = addressMapper.insert(address);
-            response.setCode(SysRetCodeConstants.SUCCESS.getCode());
-            response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
-            log.info("AddressServiceImpl.createAddress effect row :" + row);
+            response = addressServiceBl.createAddress(request);
         } catch (Exception e) {
             log.error("AddressServiceImpl.createAddress occur Exception :" + e);
             ExceptionProcessorUtils.wrapperHandlerException(response, e);
@@ -88,15 +86,10 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     public UpdateAddressRS updateAddress(UpdateAddressVO request) {
         log.error("begin - AddressServiceImpl.updateAddress request :" + request);
-        UpdateAddressRS response = new UpdateAddressRS();
+        UpdateAddressRS response = null;
         try {
             request.requestCheck();
-            checkAddressDefaultUnique(request.getIsDefault() == 1, request.getUserId());
-            Address address = converter.req2Address(request);
-            int row = addressMapper.updateByPrimaryKey(address);
-            response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
-            response.setCode(SysRetCodeConstants.SUCCESS.getCode());
-            log.info("AddressServiceImpl.createAddress effect row :" + row);
+            response = addressServiceBl.updateAddress(request);
         } catch (Exception e) {
             log.error("AddressServiceImpl.updateAddress occur Exception :" + e);
             ExceptionProcessorUtils.wrapperHandlerException(response, e);
@@ -107,37 +100,14 @@ public class AddressServiceImpl implements IAddressService {
     @Override
     public DeleteAddressRS deleteAddress(DeleteAddressVO request) {
         log.error("begin - AddressServiceImpl.deleteAddress request :" + request);
-        DeleteAddressRS response = new DeleteAddressRS();
+        DeleteAddressRS response = null;
         try {
             request.requestCheck();
-            int row = addressMapper.deleteByPrimaryKey(request.getAddressId());
-            if (row > 0) {
-                response.setCode(SysRetCodeConstants.SUCCESS.getCode());
-                response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
-            } else {
-                response.setCode(SysRetCodeConstants.DATA_NOT_EXIST.getCode());
-                response.setMsg(SysRetCodeConstants.DATA_NOT_EXIST.getMessage());
-            }
-            log.info("AddressServiceImpl.deleteAddress effect row :" + row);
+            response = addressServiceBl.deleteAddress(request);
         } catch (Exception e) {
             log.error("AddressServiceImpl.deleteAddress occur Exception :" + e);
             ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
-    }
-
-    //地址只能有一个默认
-    private void checkAddressDefaultUnique(boolean isDefault, Long userId) {
-        if (isDefault) {
-            Example example = new Example(Address.class);
-            example.createCriteria().andEqualTo("userId", userId);
-            List<Address> addresses = addressMapper.selectByExample(example);
-            addresses.parallelStream().forEach(address -> {
-                if (address.getIsDefault() == 1) {
-                    address.setIsDefault(1);
-                    addressMapper.updateByPrimaryKey(address);
-                }
-            });
-        }
     }
 }

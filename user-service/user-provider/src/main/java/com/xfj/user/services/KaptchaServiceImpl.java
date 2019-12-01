@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Author ZQ
- * @Description //TODO
+ * @Description 验证码相关
  * @Date 2019/11/25 20:26
  **/
 @Slf4j
