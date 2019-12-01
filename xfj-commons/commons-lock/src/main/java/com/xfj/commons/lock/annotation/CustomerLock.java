@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Author ZQ
- * @Description //TODO 修改内容
+ * @Description
  * @Date 2019/11/24 19:21
  **/
 @Target({ElementType.METHOD})
