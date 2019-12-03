@@ -5,10 +5,29 @@ import store from './store/'
 import VueLazyload from 'vue-lazyload'
 import infiniteScroll from 'vue-infinite-scroll'
 import VueCookie from 'vue-cookie'
-import { userInfo } from './api'
+import {userInfo} from './api'
 // Element css
 import 'element-ui/lib/theme-default/index.css'
-import { Button, Pagination, Checkbox, Icon, Autocomplete, Loading, Message, Notification, Steps, Step, Table, TableColumn, Input, Dialog, Select, Option, Tabs, TabPane } from 'element-ui'
+import {
+  Button,
+  Pagination,
+  Checkbox,
+  Icon,
+  Autocomplete,
+  Loading,
+  Message,
+  Notification,
+  Steps,
+  Step,
+  Table,
+  TableColumn,
+  Input,
+  Dialog,
+  Select,
+  Option,
+  Tabs,
+  TabPane
+} from 'element-ui'
 // import { getStore } from '/utils/storage'
 import VueContentPlaceholders from 'vue-content-placeholders'
 // import Mock from './mock/mock.js'
@@ -47,11 +66,7 @@ Vue.use(VueLazyload, {
 Vue.config.productionTip = false
 const whiteList = ['/home', '/goods', '/login', '/register', '/product', '/thanks', '/search', '/refreshsearch', '/refreshgoods'] // 不需要登陆的页面
 router.beforeEach(function (to, from, next) {
-  // let params = {
-  //   params: {
-  //     token: getStore('token')
-  //   }
-  // }
+  // 对于所有的url之前都会走这个方法，如果在白名单中的，那么不用进行登录校验，否则就得向后端进行登录校验
   userInfo().then(res => {
     if (!res.success) { // 没登录
       if (whiteList.indexOf(to.path) !== -1) { // 白名单
