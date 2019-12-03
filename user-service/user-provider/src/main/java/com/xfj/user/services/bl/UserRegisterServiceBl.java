@@ -1,19 +1,17 @@
 package com.xfj.user.services.bl;
 
+import com.xfj.commons.base.service.BaseService;
 import com.xfj.commons.tool.exception.ValidateException;
 import com.xfj.user.constants.SysRetCodeConstants;
-import com.xfj.user.dal.entitys.Member;
-import com.xfj.user.dal.entitys.UserVerify;
-import com.xfj.user.dal.persistence.MemberMapper;
-import com.xfj.user.dal.persistence.UserVerifyMapper;
+import com.xfj.user.entitys.Member;
+import com.xfj.user.entitys.UserVerify;
+import com.xfj.user.mapper.MemberMapper;
 import com.xfj.user.registerVerification.KafKaRegisterSuccProducer;
 import com.xfj.user.rs.UserRegisterRS;
 import com.xfj.user.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
@@ -28,19 +26,16 @@ import java.util.*;
  **/
 @Slf4j
 @Component
-public class UserRegisterServiceBl {
+public class UserRegisterServiceBl extends BaseService<Member, String> {
 
     @Autowired
     MemberMapper memberMapper;
-
     @Autowired
     RedissonClient redissonClient;
-
     @Autowired
     KafKaRegisterSuccProducer kafKaRegisterSuccProducer;
-
     @Autowired
-    UserVerifyMapper userVerifyMapper;
+    UserVerifyServiceBl userVerifyServiceBl;
 
     /**
      * @return void
@@ -67,7 +62,10 @@ public class UserRegisterServiceBl {
         }
         //发送邮件激活
         sendEmailToMq(member, userVerify);
-        return null;
+        // 业务处理成功后返回
+        response.setCode(SysRetCodeConstants.SUCCESS.getCode());
+        response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
+        return response;
     }
 
     /**
@@ -87,7 +85,7 @@ public class UserRegisterServiceBl {
     }
 
     /**
-     * @return com.xfj.user.dal.entitys.UserVerify
+     * @return com.xfj.user.entitys.UserVerify
      * @Author ZQ
      * @Description 插入用户验证表
      * @Date 2019/11/29 19:07
@@ -102,7 +100,7 @@ public class UserRegisterServiceBl {
         userVerify.setIsExpire("N");//注册信息是否过期
         userVerify.setIsVerify("N");//是否验证成功
         userVerify.setRegisterDate(new Date());
-        if (userVerifyMapper.insert(userVerify) != 1) {
+        if (userVerifyServiceBl.save(userVerify) != -1) {
             return userVerify;
         }
         return null;
@@ -120,11 +118,9 @@ public class UserRegisterServiceBl {
         member.setUsername(userVO.getUserName());
         member.setPassword(DigestUtils.md5DigestAsHex(userVO.getUserPwd().getBytes()));
         member.setState(1);
-        member.setCreated(new Date());
-        member.setUpdated(new Date());
         member.setIsVerified("N");//为激活
         member.setEmail(userVO.getEmail());
-        if (memberMapper.insert(member) != -1) {
+        if (save(member) != -1) {
             return member;
         }
         return null;

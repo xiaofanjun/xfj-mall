@@ -4,9 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.xfj.user.IUserLoginService;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.converter.UserConverterMapper;
-import com.xfj.user.dal.entitys.Member;
-import com.xfj.user.dal.persistence.MemberMapper;
-import com.xfj.user.dal.persistence.UserMapper;
+import com.xfj.user.entitys.Member;
+import com.xfj.user.mapper.MemberMapper;
 import com.xfj.user.rs.CheckAuthRS;
 import com.xfj.user.rs.UserLoginRS;
 import com.xfj.user.utils.ExceptionProcessorUtils;
@@ -32,9 +31,6 @@ import java.util.Map;
 @Slf4j
 @Service
 public class UserLoginServiceImpl implements IUserLoginService {
-    @Autowired
-    UserMapper userMapper;
-
     @Autowired
     MemberMapper memberMapper;
 

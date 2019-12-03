@@ -34,10 +34,6 @@ public class UserRegisterServiceImpl implements IUserRegisterService {
             if (null != response) {
                 return response;
             }
-            // 业务处理成功后返回
-            response.setCode(SysRetCodeConstants.SUCCESS.getCode());
-            response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
-
         } catch (Exception e) {
             log.error("UserLoginServiceImpl.register Occur Exception :" + e);
             ExceptionProcessorUtils.wrapperHandlerException(response, e);

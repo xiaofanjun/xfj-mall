@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfj.user.dal.persistence.AddressMapper">
-  <resultMap id="BaseResultMap" type="com.xfj.user.dal.entitys.Address">
+<mapper namespace="com.xfj.user.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.xfj.user.entitys.Address">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="address_id" jdbcType="BIGINT" property="addressId" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="modifydate" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="sass_id" jdbcType="VARCHAR" property="sass_id" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />

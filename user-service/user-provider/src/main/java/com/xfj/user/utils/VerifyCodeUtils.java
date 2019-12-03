@@ -1,6 +1,6 @@
 package com.xfj.user.utils;
 
-import com.xfj.user.dal.entitys.ImageResult;
+import com.xfj.user.entitys.ImageResult;
 import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;

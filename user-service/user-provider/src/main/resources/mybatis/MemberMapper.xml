@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xfj.user.dal.persistence.MemberMapper">
-  <resultMap id="BaseResultMap" type="com.xfj.user.dal.entitys.Member">
+<mapper namespace="com.xfj.user.mapper.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.xfj.user.entitys.Member">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="modifydate" jdbcType="TIMESTAMP" property="modifydate" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="sass_id" jdbcType="VARCHAR" property="sass_id" />
+
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="created" jdbcType="TIMESTAMP" property="created" />
-    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="state" jdbcType="INTEGER" property="state" />
@@ -24,7 +28,7 @@
   
   <sql id="BaseColumns">
     <!-- WARNING - @mbg.generated -->
-    id, username, password, phone, email, created, updated, sex, address, state, file, description, points, balance,isverified
+    id, username, password, phone, email, createdate, modifydate,operator, sass_id,sex, address, state, file, description, points, balance,isverified
   </sql>
   
 </mapper>

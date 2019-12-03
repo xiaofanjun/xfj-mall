@@ -1,10 +1,11 @@
 package com.xfj.user.services.bl;
 
+import com.xfj.commons.base.service.BaseService;
 import com.xfj.user.IUserLoginService;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.converter.MemberConverter;
-import com.xfj.user.dal.entitys.Member;
-import com.xfj.user.dal.persistence.MemberMapper;
+import com.xfj.user.entitys.Member;
+import com.xfj.user.mapper.MemberMapper;
 import com.xfj.user.rs.CheckAuthRS;
 import com.xfj.user.rs.HeadImageRS;
 import com.xfj.user.rs.UpdateMemberRS;
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  **/
 @Slf4j
 @Component
-public class MemberServiceBl {
+public class MemberServiceBl extends BaseService<Member,String> {
 
     @Autowired
     MemberMapper memberMapper;

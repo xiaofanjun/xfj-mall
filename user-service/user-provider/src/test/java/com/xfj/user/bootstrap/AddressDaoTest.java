@@ -1,7 +1,6 @@
 package com.xfj.user.bootstrap;
 
-import com.xfj.user.dal.dao.AddressDao;
-import com.xfj.user.dal.entitys.Address;
+import com.xfj.user.entitys.Address;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +13,5 @@ import java.util.List;
 @SpringBootTest
 public class AddressDaoTest {
 
-    @Autowired
-    AddressDao addressDao;
 
-    @Test
-    public void selectAllTest() {
-        List<Address> addressList = addressDao.selectAll();
-        addressList.forEach(address -> {
-            System.out.println(address.getAddressId() + " | " + address.getTel());
-        });
-    }
-
-    @Test
-    public void insertTest() {
-
-    }
 }

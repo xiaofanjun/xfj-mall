@@ -1,18 +1,15 @@
 package com.xfj.user.services;
 
 import com.xfj.user.IMemberService;
-import com.xfj.user.IUserLoginService;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.converter.MemberConverter;
-import com.xfj.user.dal.entitys.Member;
-import com.xfj.user.dal.persistence.MemberMapper;
-import com.xfj.user.rs.CheckAuthRS;
+import com.xfj.user.entitys.Member;
+import com.xfj.user.mapper.MemberMapper;
 import com.xfj.user.rs.HeadImageRS;
 import com.xfj.user.rs.QueryMemberRS;
 import com.xfj.user.rs.UpdateMemberRS;
 import com.xfj.user.services.bl.MemberServiceBl;
 import com.xfj.user.utils.ExceptionProcessorUtils;
-import com.xfj.user.vo.CheckAuthVO;
 import com.xfj.user.vo.HeadImageVO;
 import com.xfj.user.vo.QueryMemberVO;
 import com.xfj.user.vo.UpdateMemberVO;

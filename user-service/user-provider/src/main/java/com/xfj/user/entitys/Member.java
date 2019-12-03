@@ -1,19 +1,22 @@
-package com.xfj.user.dal.entitys;
+package com.xfj.user.entitys;
 
+import com.xfj.commons.base.domain.BaseDO;
 import lombok.Data;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
+/**
+ * @Author ZQ
+ * @Description 用户会员表(前端)
+ * @Date 2019/12/3 11:16
+ **/
 @Table(name = "tb_member")
 @Data
-@ToString
-public class Member {
-    @Id
-    private Long id;
+@EqualsAndHashCode(callSuper = true)
+public class Member extends BaseDO<String> {
+    private static final long serialVersionUID = 1L;
 
     /**
      * 用户名
@@ -34,10 +37,6 @@ public class Member {
      * 注册邮箱
      */
     private String email;
-
-    private Date created;
-
-    private Date updated;
 
     private String sex;
 
@@ -63,7 +62,7 @@ public class Member {
     private Double balance;
 
     /**
-     *  是否激活,默认值N，激活Y
+     * 是否激活,默认值N，激活Y
      */
     @Column(name = "isverified")
     private String isVerified;

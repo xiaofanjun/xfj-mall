@@ -1,6 +1,6 @@
 package com.xfj.user.converter;
 
-import com.xfj.user.dal.entitys.Address;
+import com.xfj.user.entitys.Address;
 import com.xfj.user.dto.AddressDto;
 import com.xfj.user.vo.AddAddressVO;
 import com.xfj.user.vo.UpdateAddressVO;

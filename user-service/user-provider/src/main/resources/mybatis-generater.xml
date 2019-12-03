@@ -27,16 +27,16 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.xfj.user.dal.entitys"
+        <javaModelGenerator targetPackage="com.xfj.user.entitys"
                             targetProject="src/main/java">
             <!--继承BaseModel-->
             <!--<property name="rootClass" value="BaseModel"/>-->
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.xfj.user.dal.persistence" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="com.xfj.user.dal.mapper" targetProject="src/main/java"/>
 
-        <javaClientGenerator targetPackage="com.xfj.user.dal.persistence"
+        <javaClientGenerator targetPackage="com.xfj.user.dal.mapper"
                              targetProject="src/main/java"
                              type="XMLMAPPER"/>
         <!--已生成的表

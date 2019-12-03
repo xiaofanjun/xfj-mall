@@ -1,18 +1,15 @@
-package com.xfj.user.dal.entitys;
+package com.xfj.user.entitys;
 
+import com.xfj.commons.base.domain.BaseDO;
 import lombok.Data;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Table(name = "tb_address")
 @Data
-@ToString
-public class Address {
-    @Id
-    @Column(name = "address_id")
-    private Long addressId;
-
+@EqualsAndHashCode(callSuper = true)
+public class Address extends BaseDO<String> {
     @Column(name = "user_id")
     private Long userId;
 

@@ -1,9 +1,10 @@
 package com.xfj.user.services.bl;
 
+import com.xfj.commons.base.service.BaseService;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.converter.AddressConverter;
-import com.xfj.user.dal.entitys.Address;
-import com.xfj.user.dal.persistence.AddressMapper;
+import com.xfj.user.entitys.Address;
+import com.xfj.user.mapper.AddressMapper;
 import com.xfj.user.rs.*;
 import com.xfj.user.vo.*;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import java.util.List;
  **/
 @Slf4j
 @Component
-public class AddressServiceBl {
+public class AddressServiceBl extends BaseService<Address, String> {
 
     @Autowired
     AddressMapper addressMapper;

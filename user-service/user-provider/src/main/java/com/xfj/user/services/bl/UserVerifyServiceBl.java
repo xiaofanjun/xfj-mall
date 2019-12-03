@@ -1,10 +1,11 @@
 package com.xfj.user.services.bl;
 
+import com.xfj.commons.base.service.BaseService;
 import com.xfj.user.constants.SysRetCodeConstants;
-import com.xfj.user.dal.entitys.Member;
-import com.xfj.user.dal.entitys.UserVerify;
-import com.xfj.user.dal.persistence.MemberMapper;
-import com.xfj.user.dal.persistence.UserVerifyMapper;
+import com.xfj.user.entitys.Member;
+import com.xfj.user.entitys.UserVerify;
+import com.xfj.user.mapper.MemberMapper;
+import com.xfj.user.mapper.UserVerifyMapper;
 import com.xfj.user.rs.UserVerifyRS;
 import com.xfj.user.vo.UserVerifyVO;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +24,12 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class UserVerifyServiceBl {
+public class UserVerifyServiceBl extends BaseService<UserVerify, String> {
+
     @Autowired
-    MemberMapper memberMapper;
+    private MemberServiceBl memberServiceBl;
+    @Autowired
+    private MemberMapper memberMapper;
     @Autowired
     UserVerifyMapper userVerifyMapper;
 
@@ -58,7 +62,7 @@ public class UserVerifyServiceBl {
         example = new Example(Member.class);
         Member member_ = this.member.get(0);
         member_.setIsVerified("Y");
-        memberMapper.updateByExample(member_, example);
+        memberServiceBl.updateByExample(member_, example);
     }
 
     /**
@@ -74,7 +78,7 @@ public class UserVerifyServiceBl {
         UserVerify userVerify = this.userVerifys.get(0);
         userVerify.setIsVerify("Y");
         //激活用户，修改tb_user_verify的信息 is_verify
-        userVerifyMapper.updateByExample(userVerify, example);
+        updateByExample(userVerify, example);
     }
 
     /**

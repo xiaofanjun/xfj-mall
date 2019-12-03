@@ -1,20 +1,24 @@
-package com.xfj.user.dal.entitys;
+package com.xfj.user.entitys;
 
+import com.xfj.commons.base.domain.BaseDO;
 import lombok.Data;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * @Author ZQ
+ * @Description 用户校验表
+ * @Date 2019/12/3 11:17
+ **/
 @Table(name = "tb_user_verify")
 @Data
-@ToString
-public class UserVerify {
-    @Id
-    private Long id;
+@EqualsAndHashCode(callSuper = true)
+public class UserVerify extends BaseDO<String> {
 
+    private static final long serialVersionUID = 1L;
     private String username;
 
     //注册时生成的唯一号

@@ -2,7 +2,7 @@ package com.xfj.user.services;
 
 import com.xfj.user.IKaptchaService;
 import com.xfj.user.constants.SysRetCodeConstants;
-import com.xfj.user.dal.entitys.ImageResult;
+import com.xfj.user.entitys.ImageResult;
 import com.xfj.user.rs.KaptchaCodeRS;
 import com.xfj.user.utils.ExceptionProcessorUtils;
 import com.xfj.user.utils.VerifyCodeUtils;

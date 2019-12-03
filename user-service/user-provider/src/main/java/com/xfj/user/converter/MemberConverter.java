@@ -1,6 +1,6 @@
 package com.xfj.user.converter;
 
-import com.xfj.user.dal.entitys.Member;
+import com.xfj.user.entitys.Member;
 import com.xfj.user.rs.QueryMemberRS;
 import com.xfj.user.vo.UpdateMemberVO;
 import org.mapstruct.Mapper;
