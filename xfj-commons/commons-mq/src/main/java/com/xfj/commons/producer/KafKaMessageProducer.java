@@ -1,4 +1,4 @@
-package com.xfj.user.registerVerification;
+package com.xfj.commons.producer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +10,24 @@ import java.util.Map;
 
 /**
  * @Author ZQ
- * @Description
+ * @Description kafka 生产者发送消息工具类
  * @Date 2019/11/27 21:27
  **/
 @Component
 @Slf4j
-public class KafKaRegisterSuccProducer {
+public class KafKaMessageProducer {
     @Autowired
     @Qualifier("registerSuccInfoTemplate")
     KafkaTemplate kafkaTemplate;
 
-    private final static String topic = "user-register-succ-topic";
-
-    public void sendRegisterSuccInfo(Map uerVerifyMap) {
+    /**
+     * @return void
+     * @Author ZQ
+     * @Description 生产者发送消息到指定topic
+     * @Date 2019/12/4 17:57
+     * @Param [topic, uerVerifyMap：消息内容]
+     **/
+    public void sendMessage(String topic, Map uerVerifyMap) {
         try {
             kafkaTemplate.send(topic, uerVerifyMap);
         } catch (Exception e) {

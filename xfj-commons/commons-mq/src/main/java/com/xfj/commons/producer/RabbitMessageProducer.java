@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 public class RabbitMessageProducer {
-	@Autowired
-	RabbitTemplate rabbitTemplate;
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
-	public void send(String context) {
-		//将订单发送到rabbitmq
-		rabbitTemplate.convertAndSend(RabbitMqConfig.DELAY_EXCHANGE, context, message -> {
-			message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
-			message.getMessageProperties().setDelay(15 * 60 * 1000);//毫秒为单位
-			return message;
-		});
-	}
+    public void send(String context) {
+        //将订单发送到rabbitmq
+        rabbitTemplate.convertAndSend(RabbitMqConfig.DELAY_EXCHANGE, context, message -> {
+            message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+            message.getMessageProperties().setDelay(15 * 60 * 1000);//毫秒为单位
+            return message;
+        });
+    }
 }

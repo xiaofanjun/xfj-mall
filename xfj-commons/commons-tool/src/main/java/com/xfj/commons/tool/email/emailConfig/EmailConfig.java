@@ -13,10 +13,10 @@ import java.util.Properties;
 import java.util.Vector;
 
 /**
- * Administrator
- * 2019/8/26 0026
- * 14:49
- */
+ * @Author ZQ
+ * @Description
+ * @Date 2019/12/5 9:06
+ **/
 @Data
 @Component
 @ConfigurationProperties(prefix = "email")
@@ -44,16 +44,18 @@ public class EmailConfig {
 
     private String mailDebug = "false";//默认值是false
 
-    /**发送哦html时指定的content-type**/
+    /**
+     * 发送html时指定的content-type
+     **/
     private String content_type = "text/html; charset=utf-8";
-    //邮件模板的路劲
+    //邮件模板路径
     private String templatePath = "emailTemplate";
 
     //邮件激活URL
     private String userMailActiveUrl;
 
 
-    public Properties getProperties(){
+    public Properties getProperties() {
         Properties properties = new Properties();
         properties.put("mail.smtp.host", this.mailServerHost);
         properties.put("mail.smtp.port", this.mailServerPort);
@@ -63,29 +65,26 @@ public class EmailConfig {
 
     /**
      * 获得收件人地址
+     *
      * @return
      */
-    public Address[] getToInternetAddress(){
-        Address[] addresses = new Address[]{};
-        List<InternetAddress> internetAddressList = new ArrayList<>();
-        toAddresss.forEach(toAddress->{
-            try {
-                internetAddressList.add(new InternetAddress(toAddress));
-            } catch (AddressException e) {
-                e.printStackTrace();
-            }
-        });
-        return (Address[]) internetAddressList.toArray(addresses);
+    public Address[] getToInternetAddress() {
+        return getAddresses();
     }
 
     /**
      * 获得抄送地址
+     *
      * @return
      */
-    public Address[] getCcInternetAddress(){
+    public Address[] getCcInternetAddress() {
+        return getAddresses();
+    }
+
+    private Address[] getAddresses() {
         Address[] addresses = new Address[]{};
         List<InternetAddress> internetAddressList = new ArrayList<>();
-        toAddresss.forEach(toAddress->{
+        toAddresss.forEach(toAddress -> {
             try {
                 internetAddressList.add(new InternetAddress(toAddress));
             } catch (AddressException e) {
