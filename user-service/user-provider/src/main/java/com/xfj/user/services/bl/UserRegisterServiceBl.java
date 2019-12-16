@@ -1,12 +1,12 @@
 package com.xfj.user.services.bl;
 
 import com.xfj.commons.base.service.BaseService;
+import com.xfj.commons.producer.KafKaMessageProducer;
 import com.xfj.commons.tool.exception.ValidateException;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.entitys.Member;
 import com.xfj.user.entitys.UserVerify;
 import com.xfj.user.mapper.MemberMapper;
-import com.xfj.user.registerVerification.KafKaRegisterSuccProducer;
 import com.xfj.user.rs.UserRegisterRS;
 import com.xfj.user.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class UserRegisterServiceBl extends BaseService<Member, String> {
     @Autowired
     RedissonClient redissonClient;
     @Autowired
-    KafKaRegisterSuccProducer kafKaRegisterSuccProducer;
+    KafKaMessageProducer kafKaMessageProducer;
     @Autowired
     UserVerifyServiceBl userVerifyServiceBl;
 
@@ -60,8 +60,8 @@ public class UserRegisterServiceBl extends BaseService<Member, String> {
             response.setMsg(SysRetCodeConstants.USER_REGISTER_VERIFY_FAILED.getMessage());
             return response;
         }
-        //发送邮件激活
-        sendEmailToMq(member, userVerify);
+        //发送邮件激活 这个放到以后绑定邮箱的时候进行邮箱的激活
+//        sendEmailToMq(member, userVerify);
         // 业务处理成功后返回
         response.setCode(SysRetCodeConstants.SUCCESS.getCode());
         response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
@@ -72,6 +72,9 @@ public class UserRegisterServiceBl extends BaseService<Member, String> {
      * @return void
      * @Author ZQ
      * @Description 发送激活邮件
+     * <p>
+     * 1: 如何查看kakfa中的消息
+     * 2:为什么在用户注册的时候把用户校验信息放入到kafka中?
      * @Date 2019/11/29 19:09
      * @Param [member, userVerify]
      **/
@@ -81,7 +84,7 @@ public class UserRegisterServiceBl extends BaseService<Member, String> {
         map.put("username", userVerify.getUsername());
         map.put("key", userVerify.getUuid());
         map.put("email", member.getEmail());
-        kafKaRegisterSuccProducer.sendRegisterSuccInfo(map);
+        kafKaMessageProducer.sendMessage(SysRetCodeConstants.USER_REGISTER_TOPIC.getCode(), map);
     }
 
     /**
@@ -118,7 +121,7 @@ public class UserRegisterServiceBl extends BaseService<Member, String> {
         member.setUsername(userVO.getUserName());
         member.setPassword(DigestUtils.md5DigestAsHex(userVO.getUserPwd().getBytes()));
         member.setState(1);
-        member.setIsVerified("N");//为激活
+        member.setIsVerified("N");//未激活
         member.setEmail(userVO.getEmail());
         if (save(member) != -1) {
             return member;

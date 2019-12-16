@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Administrator
- * 2019/8/22 0022
- * 18:32
- */
+ * @Author ZQ
+ * @Description 消费者，注册成功发送邮件
+ * @Date 2019/12/5 8:56
+ **/
 @Component
 @Slf4j
 public class KafKaRegisterSuccMailConsumer {
@@ -33,32 +33,33 @@ public class KafKaRegisterSuccMailConsumer {
 
     /**
      * 指定消费某一个分区
+     *
      * @KafkaListener(id = "",topicPartitions ={@TopicPartition(topic=topic,partitions = {"1"})},containerFactory = "userRegisterSuccKafkaListenerContainerFactory",groupId = group_id)
      */
-    @KafkaListener(id = "",topics = topic,containerFactory = "userRegisterSuccKafkaListenerContainerFactory",groupId = group_id)
-    public void receiveInfo(Map userVerifyMap, Acknowledgment acknowledgment){
+    @KafkaListener(id = "", topics = topic, containerFactory = "userRegisterSuccKafkaListenerContainerFactory", groupId = group_id)
+    public void receiveInfo(Map userVerifyMap, Acknowledgment acknowledgment) {
         try {
-            log.info("收到一条注册消息"+userVerifyMap);
+            log.info("收到一条注册消息" + userVerifyMap);
             sendMail(userVerifyMap);
             acknowledgment.acknowledge();//手动提交消息
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void sendMail(Map userVerifyMap){
-        try{
+    public void sendMail(Map userVerifyMap) {
+        try {
             MailData mailData = new MailData();
-            mailData.setToAddresss(Arrays.asList((String)userVerifyMap.get("email")));
+            mailData.setToAddresss(Arrays.asList((String) userVerifyMap.get("email")));
             mailData.setSubject(emailConfig.getSubject());
             mailData.setContent("用户激活邮件");
-            Map<String,Object> viewObj  = new HashMap<>();
-            viewObj.put("url",emailConfig.getUserMailActiveUrl()+"?username="+userVerifyMap.get("username")+"&email="+userVerifyMap.get("key"));
-            viewObj.put("title",emailConfig.getSubject());
+            Map<String, Object> viewObj = new HashMap<>();
+            viewObj.put("url", emailConfig.getUserMailActiveUrl() + "?username=" + userVerifyMap.get("username") + "&email=" + userVerifyMap.get("key"));
+            viewObj.put("title", emailConfig.getSubject());
             defaultEmailSender.sendHtmlMailUseTemplate(mailData);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
 
         }
     }

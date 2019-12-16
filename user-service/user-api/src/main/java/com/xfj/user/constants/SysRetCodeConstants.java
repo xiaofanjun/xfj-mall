@@ -2,7 +2,7 @@ package com.xfj.user.constants;
 
 /**
  * @Author ZQ
- * @Description //user-service 系统编码常量
+ * @Description user-service 系统编码常量
  * @Date 2019/11/24 19:15
  **/
 public enum SysRetCodeConstants {
@@ -31,7 +31,9 @@ public enum SysRetCodeConstants {
     SYSTEM_TIMEOUT("003098", "系统超时"),
     SYSTEM_ERROR("003099", "系统错误"),
 
-    USERVERIFY_INFOR_INVALID("003200", "用户注册验证验证信息不合法");
+    USERVERIFY_INFOR_INVALID("003200", "用户注册验证验证信息不合法"),
+
+    USER_REGISTER_TOPIC("user-register-succ-topic", "用户注册topic");
 
     private String code;
     private String message;

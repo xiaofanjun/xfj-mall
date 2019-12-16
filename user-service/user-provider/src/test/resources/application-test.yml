@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://mysql.xfj.com:3306/xfj?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC
+    url: jdbc:mysql://121.36.1.22:3306/gp-mall?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC
     username: root
-    password: 123
+    password: zhangqiang
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 2
@@ -20,9 +20,9 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
     useGlobalDataSourceStat: true
   redisson:
-#    address: redis.xfj.com:6379
-    address: redis4xfj.redis.rds.aliyuncs.com:6379
-    password: redis4xfj
+    address: 121.36.1.22:6379
+    #    address: redis4xfj.redis.rds.aliyuncs.com:6379
+    # password: zhangqiang-redis
     timeout: 3000
     database: 0
     pool:
@@ -33,7 +33,7 @@ spring:
   ##以下下配置是springboot autoconfig 认初始化时会加载的参数，但是user可以重现构建一下参数
   ##自定义构造的bean可查看kafkaConfig
   kafka:
-    bootstrapServers: kafka.xfj.com:9092,kafka.xfj.com:9092
+    bootstrapServers: 121.36.1.22:9092,121.36.1.22:9092
     consumer:
       auto-offset-reset: latest
       key-serializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -53,14 +53,14 @@ dubbo:
     owner: Mic
   protocol:
     name: dubbo
-    port: 20887
+    port: 20880
   registry:
-    address: zookeeper://zk.xfj.com:2181
+    address: zookeeper://121.36.1.22:2181
     check: true
     group: dubbo-dev
     simplified: true
   metadata-report:
-    address: zookeeper://zk.xfj.com:2181
+    address: zookeeper://121.36.1.22:2181
     retry-times: 30
     cycle-report: false
     group: dubbo-dev
@@ -68,7 +68,7 @@ dubbo:
     base-packages: com.xfj.user.services
 lock:
   zookeeper:
-    zkHosts: zookeeper://zk.xfj.com:2181,zookeeper://zk.xfj.com:2181
+    zkHosts: zookeeper://121.36.1.22:2181,zookeeper://121.36.1.22:2181
     sessionTimeout: 30000
     connectionTimeout: 30000
     ## 共享一个zk链接
@@ -78,12 +78,13 @@ lock:
 email:
   mail-server-host: smtp.163.com
   mail-server-port: 25
-  from-address:  
-  to-addresss:  
-  cc-addresss:  
-  username:  
-  password:  
+  from-address: xxxx@163.com
+  to-addresss:
+  cc-addresss:
+  username:
+  password:
   mailSmtpAuth: true
-  subject: 通知
-  content: 你好，纪红，到办公室来,请不要上班时间看电视剧.
+  subject: 激活邮件，请点击激活
+  content:
   template-path: emailTemplate
+  userMailActiveUrl: http://localhost:9999/xfj-user/gpuser/verify
