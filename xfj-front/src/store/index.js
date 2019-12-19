@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import mutations from './mutations'
 import action from './action'
-Vue.use(Vuex)
 
+Vue.use(Vuex)
+// 系统共有状态
 const state = {
   login: false,   // 是否登录
   userInfo: null, // 用户信息

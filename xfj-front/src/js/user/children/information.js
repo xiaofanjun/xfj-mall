@@ -79,7 +79,7 @@ export default {
             if (res.success === true) {
               let path = res.result
               let info = this.userInfo
-              info.file = path
+              info.file = path + '?' + new Date().getTime()
               this.RECORD_USERINFO({info: info})
               this.editAvatarShow = false
               this.messageSuccess('上传成功')
