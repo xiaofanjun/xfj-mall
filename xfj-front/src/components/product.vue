@@ -16,48 +16,5 @@
     </ul>
   </div>
 </template>
-<script>
-  export default {
-    props: [
-      'product'
-    ]
-  }
-</script>
-<style scoped lang="scss">
-  @import "../assets/style/mixin";
-
-  .item {
-    position: relative;
-    height: 429px;
-    text-align: center;
-    img {
-      display: block;
-      width: 206px;
-      height: 206px;
-    }
-    .img-box {
-      @extend %block-center
-    }
-    .info {
-      width: 100%;
-      padding: 0 10px;
-      h6 {
-        overflow: hidden;
-        font-size: 16px;
-        line-height: 1.2;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        color: #424242;
-      }
-      p {
-        overflow: hidden;
-        padding-top: 7px;
-        font-size: 12px;
-        line-height: 1.2;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        color: #b2b2b2;
-      }
-    }
-  }
-</style>
+<script src="../js/components/product.js"></script>
+<style src="../css/components/product.scss" scoped lang="scss"></style>

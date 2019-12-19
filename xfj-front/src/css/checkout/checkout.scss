@@ -1,0 +1,349 @@
+// 收货地址
+.address-item-list {
+  padding: 30px 13px 0;
+
+  .address {
+    padding: 19px 14px 0 19px;
+
+    p {
+      line-height: 26px;
+    }
+  }
+
+  li.checked {
+    border-color: #6A8FE5;
+    position: relative;
+    background: #fff;
+
+    .pa {
+      right: 15px;
+      top: 18px;
+    }
+
+    &:hover {
+      background: #fff;
+    }
+  }
+
+  li {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 276px;
+    height: 158px;
+    margin: 0 0 30px 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 3px;
+    background: #FAFAFA;
+    line-height: 14px;
+    text-align: left;
+    word-wrap: break-word;
+    word-break: normal;
+    color: #626262;
+    cursor: pointer;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    &:hover {
+      background: #F2F2F2;
+
+      .operation-section {
+        visibility: visible;
+        transform: translate(0, 0);
+      }
+    }
+
+    &.add-address-item {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      p {
+        margin-top: 5px;
+      }
+    }
+
+    .operation-section {
+      visibility: hidden;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 28px;
+      background: #E1E1E1;
+      border-top: 1px solid #E1E1E1;
+      transition: all .2s ease;
+      transform: translate(0, 29px);
+      border-top: 1px solid #E1E1E1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 11;
+
+      span {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        height: 100%;
+
+        &:hover {
+          background: #F2F2F2;
+        }
+      }
+
+      span + span {
+        border-left: 1px solid #E1E1E1;
+      }
+
+    }
+  }
+}
+
+.s-content {
+  .md {
+    > div {
+      text-align: left;
+      margin-bottom: 15px;
+
+      > input {
+        width: 100%;
+        height: 38px;
+        font-size: 14px;
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 3px 5px -4px rgba(0, 0, 0, .4) inset, -1px 0 3px -2px rgba(0, 0, 0, .1) inset;
+        line-height: 46px;
+      }
+    }
+  }
+
+  .btn {
+    margin: 0;
+    width: 100%;
+    height: 43px;
+    font-size: 14px;
+    line-height: 43px
+  }
+}
+
+.ui-cart {
+  img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cart-table-title {
+    position: relative;
+    z-index: 1;
+    line-height: 38px;
+    height: 38px;
+    padding: 0 0 0 30px;
+    font-size: 12px;
+    background: #eee;
+    border-bottom: 1px solid #dbdbdb;
+    border-bottom-color: rgba(0, 0, 0, .08);
+
+    .name {
+      float: left;
+      text-align: left;
+    }
+
+    span {
+      width: 137px;
+      float: right;
+      text-align: center;
+      color: #838383;
+    }
+  }
+
+  .cart-group.divide {
+    .cart-items {
+      border-top: 1px dashed #eee;
+    }
+  }
+
+  .cart-items {
+    position: relative;
+    height: 140px;
+    margin-left: 74px;
+
+    .subtotal {
+      font-weight: 700;
+    }
+
+    .item-cols-num,
+    .price,
+    .subtotal {
+      overflow: hidden;
+      float: right;
+      width: 137px;
+      text-align: center;
+      color: #666;
+      line-height: 140px;
+    }
+
+    /*数量*/
+    .subtotal,
+    .item-cols-num {
+      padding-top: 50px;
+      line-height: 40px;
+    }
+
+    .select {
+      width: 112px;
+      height: 40px;
+      padding-top: 4px;
+      margin: 0 auto;
+      line-height: 40px;
+
+      .down {
+        background-position: 0 -60px;
+      }
+
+      .down.down-disabled:hover {
+        background-position: 0 -300px;
+        cursor: not-allowed;
+      }
+
+      .num {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        width: 36px;
+        height: 18px;
+        margin: 7px 0 0;
+        border: none;
+        border-radius: 3px;
+        line-height: 18px;
+        text-align: center;
+        font-size: 14px;
+        transition: all .2s ease-out;
+      }
+    }
+
+  }
+
+  .down.down-disabled {
+    background-position: 0 -300px;
+    cursor: not-allowed;
+  }
+}
+
+.cart-group.divide .cart-top-items:first-child .cart-items {
+  border-top: none;
+}
+
+.items-choose {
+  position: absolute;
+  left: -74px;
+  top: 0;
+  width: 74px;
+  height: 20px;
+  padding: 60px 0 0 31px;
+  font-size: 12px;
+  color: #999;
+}
+
+.items-thumb {
+  position: relative;
+  margin-top: 30px;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+}
+
+.cart-items .items-thumb > a, .ui-cart .cart-items .items-thumb > i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  border: 0 solid rgba(255, 255, 255, .1);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+}
+
+.name {
+  width: 380px;
+  margin-left: 20px;
+  color: #323232;
+  display: table;
+
+  a {
+    color: #333;
+    font-size: 16px;
+  }
+}
+
+.name-table {
+  display: table-cell;
+  vertical-align: middle;
+  height: 140px;
+}
+
+.fix-bottom {
+  padding: 22px 29px 19px 30px;
+  height: 90px;
+  width: 100%;
+  z-index: 1;
+  background-position: center;
+  background: #fdfdfd;
+  background: -webkit-linear-gradient(#fdfdfd, #f9f9f9);
+  background: linear-gradient(#fdfdfd, #f9f9f9);
+  border-top: 1px solid #e9e9e9;
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, .04);
+
+  .cart-bottom-bg {
+    height: 80px;
+    border-top: 1px solid #D9D9D9;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .fix-bottom-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .shipping {
+    display: flex;
+    align-items: center;
+  }
+
+  em {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-top: -4px;
+    font-size: 24px;
+    color: #d44d44;
+    font-weight: 700;
+  }
+}
+
+.attribute, .name p {
+  color: #999;
+  font-size: 12px;
+  padding-top: 4px;
+  line-height: 17px;
+}
+
+.md .el-input__inner {
+  width: 100%;
+  height: 36px;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px -4px rgba(0, 0, 0, .4) inset, -1px 0 3px -2px rgba(0, 0, 0, .1) inset;
+  line-height: 36px;
+}

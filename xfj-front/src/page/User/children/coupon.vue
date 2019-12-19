@@ -11,18 +11,5 @@
     </y-shelf>
   </div>
 </template>
-<script>
-  import YShelf from '/components/shelf'
-  export default {
-    components: {
-      YShelf
-    }
-  }
-</script>
-<style lang="scss" scoped>
-  .no-discount {
-    line-height: 2em;
-    font-size: 22px;
-    color: #999;
-  }
-</style>
+<script src="../../../js/user/children/coupon.js"></script>
+<style src="../../../css/user/children/coupon.scss" lang="scss" scoped></style>

@@ -8,13 +8,4 @@
     <y-footer></y-footer>
   </div>
 </template>
-<script>
-  import YHeader from '/common/header'
-  import YFooter from '/common/footer'
-  export default {
-    components: {
-      YHeader,
-      YFooter
-    }
-  }
-</script>
+<script src="../../js/order/order.js"></script>

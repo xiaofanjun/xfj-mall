@@ -1,0 +1,221 @@
+.w {
+  padding-top: 39px;
+}
+
+.order-info {
+  padding: 60px 0 55px;
+  color: #333;
+  background: #fff !important;
+
+  h3 {
+    padding-bottom: 14px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 36px;
+    color: #212121;
+  }
+
+  .payment-detail {
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    color: #999;
+  }
+}
+
+/*支付类型*/
+.pay-type {
+  margin: 0 auto;
+  width: 90%;
+  padding-bottom: 30px;
+
+  .p-title {
+    font-size: 18px;
+    line-height: 40px;
+    padding: 0 10px;
+    position: relative;
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+}
+
+.pay-type {
+  .pay-item {
+    display: flex;
+    align-items: center;
+
+    div {
+      margin-top: 20px;
+      width: 175px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #E5E5E5;
+      cursor: pointer;
+      border-radius: 6px;
+      margin-right: 10px;
+      background: #FAFAFA;
+
+      &.active {
+        border-color: #6A8FE5;
+        background: #fff;
+      }
+
+      img {
+        display: block;
+        height: 34px;
+        margin: 8px auto;
+      }
+    }
+  }
+}
+
+.box-inner {
+  line-height: 60px;
+  background: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+  box-sizing: border-box;
+
+  > div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  em {
+    margin-left: 5px;
+    font-size: 24px;
+    color: #d44d44;
+    font-weight: 700;
+    margin-right: 20px;
+
+    span {
+      margin-right: 4px;
+      font-size: 16px;
+
+    }
+  }
+}
+
+.confirm-detail {
+  padding: 0 30px 25px;
+  border-top: 1px solid #d5d5d5;
+
+  .info-title {
+    height: 14px;
+    margin: 30px 0 17px;
+    line-height: 14px;
+    font-weight: bolder;
+    color: #333;
+  }
+
+  .info-detail {
+    line-height: 24px;
+    color: #666;
+  }
+}
+
+.confirm-table-title {
+  padding: 3px 0 0 33px;
+  border-top: 1px solid #D5D5D5;
+  line-height: 54px;
+  font-weight: bolder;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    display: inline-block;
+    width: 175px;
+    text-align: left;
+  }
+
+  .price {
+    padding-left: 80px;
+  }
+
+  .num {
+    padding-left: 75px;
+  }
+
+  .subtotal {
+    padding-left: 72px;
+  }
+}
+
+.confirm-goods-table {
+  border-top: 1px solid #D5D5D5;
+
+  .cart-items {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: #333;
+    }
+  }
+
+  .n-b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+      color: #626262;
+      font-weight: 700;
+      width: 175px;
+      text-align: center;
+    }
+  }
+}
+
+.order-discount-line {
+  padding: 22px 30px 53px;
+  border-top: 1px solid #D5D5D5;
+  line-height: 24px;
+  text-align: right;
+  font-size: 12px;
+
+  &:first-child {
+    line-height: 32px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bolder;
+  }
+}
+
+.name {
+  width: 40%;
+}
+
+.name-cell {
+  padding-left: 33px;
+}
+
+.input {
+  width: 30%;
+  margin: 0 0 1vw 38px;
+}
+
+.pay-info {
+  margin-top: -2vw;
+  text-align: center;
+}
+
+.money-select {
+  width: 31%;
+  padding-left: 10px;
+  margin-bottom: 1vw;
+}

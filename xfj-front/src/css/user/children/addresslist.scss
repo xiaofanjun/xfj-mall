@@ -1,0 +1,110 @@
+.table-title {
+  position: relative;
+  z-index: 1;
+  line-height: 38px;
+  height: 38px;
+  padding: 0 0 0 38px;
+  font-size: 12px;
+  background: #eee;
+  border-bottom: 1px solid #dbdbdb;
+  border-bottom-color: rgba(0, 0, 0, .08);
+
+  .name {
+    float: left;
+    text-align: left;
+  }
+
+  span {
+    width: 137px;
+    float: left;
+    text-align: center;
+    color: #838383;
+  }
+
+  .address {
+    margin-left: 115px;
+  }
+
+  .tel {
+    margin-left: 195px;
+  }
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  height: 115px;
+  text-align: center;
+
+  .name {
+    width: 106px;
+  }
+
+  .address-msg {
+    flex: 1;
+  }
+
+  .telephone {
+    width: 160px;
+  }
+
+  .defalut {
+    width: 80px;
+
+    > a {
+      text-align: center;
+      /*display: none;*/
+    }
+  }
+
+  .operation {
+    width: 135px;
+
+    a {
+      padding: 10px 5px;
+    }
+  }
+
+  &:hover {
+    .defalut > a {
+      display: block;
+    }
+  }
+}
+
+.address-item + .address-item {
+  border-top: 1px solid #CFCFCF;
+}
+
+.defalut-address {
+  color: #626262;
+  display: block;
+  pointer-events: none;
+  cursor: default;
+}
+
+.md {
+  > div {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+}
+
+.btn {
+  margin: 0;
+  width: 100%;
+  height: 44px;
+  font-size: 14px;
+  line-height: 44px
+}
+
+.md .el-input__inner {
+  width: 100%;
+  height: 36px;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px -4px rgba(0, 0, 0, .4) inset, -1px 0 3px -2px rgba(0, 0, 0, .1) inset;
+  line-height: 36px;
+}

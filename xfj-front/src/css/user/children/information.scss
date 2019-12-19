@@ -1,0 +1,182 @@
+@import "../../../assets/style/mixin";
+
+.avatar-box {
+  height: 124px;
+  display: flex;
+  margin: 0 30px 30px;
+  border-bottom: #dadada solid 1px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+
+  .img-box {
+    @include wh(80px);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    @include wh(100%)
+  }
+
+  .r-box {
+    margin-left: 20px;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+      color: #333;
+    }
+  }
+}
+
+.safe-status-ok {
+  background: url("/static/images/safe-status.png") 21px 5px no-repeat;
+  background-size: 22px;
+}
+
+.safe-status-warning {
+  background: url("/static/images/safe-status-problem.png") 21px 5px no-repeat;
+  background-size: 22px;
+}
+
+.status-box {
+  position: relative;
+  height: 6px;
+  padding-bottom: 30px;
+  margin: 0 30px 30px;
+  border-bottom: 1px solid #dadada;
+  line-height: 30px;
+}
+
+.safe-center-title {
+  margin-left: 60px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+  }
+}
+
+
+// 修改头像
+.edit-avatar {
+  z-index: 9999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  @include wh(100%);
+  background-color: rgba(0, 0, 0, .5);
+  @extend %block-center;
+
+  .content {
+    display: flex;
+    padding: 45px 100px 0;
+  }
+
+  > div {
+    box-sizing: content-box;
+    @include wh(700px, 500px);
+    margin: 0;
+  }
+
+  .btn {
+    width: 80px;
+    height: 30px;
+    margin-left: 10px;
+    position: relative;
+    text-align: center;
+    line-height: 30px;
+    text-shadow: rgba(255, 255, 255, .496094) 0 1px 0;
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+
+    &:hover {
+    }
+
+    a {
+      color: #666;
+      display: block;
+      @include wh(100%);
+    }
+  }
+
+  input[type=file] {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 15px solid #000;
+    overflow: hidden;
+  }
+
+  .edit-l {
+    width: 100px;
+    text-align: center;
+  }
+
+  .edit-r {
+    margin-left: 20px;
+    flex: 1;
+
+    > div {
+      border: 1px solid #ccc;
+      width: 320px;
+      height: 320px;
+    }
+  }
+}
+
+.image-container {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  padding: 0 10px;
+  @extend %block-center;
+
+  &:hover {
+    svg {
+      transition: all 1s;
+      transform: rotate(360deg);
+      transform-origin: 50% 50%;
+    }
+
+    path {
+      fill: #8a8a8a;
+    }
+  }
+}
+
+.big {
+  display: block;
+  width: 320px;
+  height: 320px;
+}
+
+.bootom-btn {
+  padding: 0 15px;
+  border-top: 1px solid #E6E6E6;
+  bottom: 0;
+  height: 60px;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

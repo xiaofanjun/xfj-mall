@@ -110,6 +110,7 @@ export default {
         captcha: this.ruleForm.captcha
       }
       userLogin(params).then(res => {
+        // eslint-disable-next-line eqeqeq
         if (res.success) {
           setStore('access_token', res.result.token)
           setStore('userId', res.result.id)
