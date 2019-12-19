@@ -1,9 +1,9 @@
 spring:
   profiles:
     active: dev
-mybatis:
-  mapper-locations: classpath*:com/xfj/user/dal/persistence/*Mapper.xml"
-  type-aliases-package: com.xfj.user.entitys
+#mybatis:
+#  mapper-locations: classpath*:com/xfj/user/dal/persistence/*Mapper.xml"
+#  type-aliases-package: com.xfj.user.entitys
 
 pagehelper:
   helper-dialect: mysql

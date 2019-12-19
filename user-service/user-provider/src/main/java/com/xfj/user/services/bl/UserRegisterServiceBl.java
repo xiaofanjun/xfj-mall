@@ -5,6 +5,7 @@ import com.xfj.commons.producer.KafKaMessageProducer;
 import com.xfj.commons.tool.exception.ValidateException;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.entitys.Member;
+import com.xfj.user.entitys.Test;
 import com.xfj.user.entitys.UserVerify;
 import com.xfj.user.mapper.MemberMapper;
 import com.xfj.user.rs.UserRegisterRS;
@@ -22,6 +23,8 @@ import java.util.*;
 /**
  * @Author ZQ
  * @Description 用户注册具体的业务逻辑实现，该层主要处理有事务相关问题
+ * <p>
+ * 在这里业务层BL 先不对外提供接口，如果有需要提供的话，直接该类实现对应的接口，然后该类实现该接口即可
  * @Date 2019/11/27 20:50
  **/
 @Slf4j
@@ -36,6 +39,8 @@ public class UserRegisterServiceBl extends BaseService<Member, String> {
     KafKaMessageProducer kafKaMessageProducer;
     @Autowired
     UserVerifyServiceBl userVerifyServiceBl;
+    @Autowired
+    TestServiceBl testServiceBl;
 
     /**
      * @return void

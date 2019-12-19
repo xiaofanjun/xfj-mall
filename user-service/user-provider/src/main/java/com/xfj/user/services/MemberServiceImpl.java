@@ -59,12 +59,13 @@ public class MemberServiceImpl implements IMemberService {
         return queryMemberResponse;
     }
 
-    @Override
     public HeadImageRS updateHeadImage(HeadImageVO request) {
         HeadImageRS response = null;
         try {
             request.requestCheck();
             response = memberServiceBl.updateHeadImage(request);
+            response.setCode(SysRetCodeConstants.SUCCESS.getCode());
+            response.setMsg(SysRetCodeConstants.SUCCESS.getMessage());
         } catch (Exception e) {
             log.error("MemberServiceImpl.updateHeadImage Occur Exception :" + e);
             ExceptionProcessorUtils.wrapperHandlerException(response, e);

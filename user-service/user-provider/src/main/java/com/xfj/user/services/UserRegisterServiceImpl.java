@@ -2,7 +2,6 @@ package com.xfj.user.services;
 
 import com.xfj.commons.annotation.ServiceLog;
 import com.xfj.user.IUserRegisterService;
-import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.rs.UserRegisterRS;
 import com.xfj.user.services.bl.UserRegisterServiceBl;
 import com.xfj.user.utils.ExceptionProcessorUtils;
@@ -13,7 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @Author ZQ
- * @Description 对外提供接口, 在该类中不得出现写操作（所以在该层也不会出现事务问题）
+ * @Description 对外提供接口,
+ * <p>
+ * 在该类中不得出现写操作（所以在该层也不会出现事务问题）
+ * <p>
+ * 还可以添加一些比如为空的判断操作
  * @Date 2019/11/27 20:50
  **/
 @Slf4j

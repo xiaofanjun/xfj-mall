@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class UserLoginRS extends AbstractResponse {
 
-    private Long id;
+    private String  id;
     private String username;
     private String phone;
     private String email;
