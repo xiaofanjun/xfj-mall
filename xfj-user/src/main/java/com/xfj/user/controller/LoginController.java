@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * @Author ZQ
- * @Description // 登录
+ * @Description 登录
  * @Date 2019/11/24 18:42
  **/
 
@@ -75,9 +75,9 @@ public class LoginController {
             Cookie cookie = CookieUtil.genCookie(TokenIntercepter.ACCESS_TOKEN, userLoginResponse.getToken(), "/", 24 * 60 * 60);
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
-            return new ResponseUtil().setData(userLoginResponse);
+            return new ResponseData(ResponseData.SUCCESS, userLoginResponse, "处理成功");
         }
-        return new ResponseUtil().setErrorMsg(userLoginResponse.getMsg());
+        return new ResponseData(userLoginResponse.getCode(), userLoginResponse.getMsg());
     }
 
     /**
@@ -117,12 +117,5 @@ public class LoginController {
             }
         }
         return new ResponseUtil().setData(null);
-    }
-
-
-    @GetMapping("/uploadImages")
-    public ResponseData uploadHead() {
-        //TODO
-        return new ResponseUtil<>().setData(null);
     }
 }
