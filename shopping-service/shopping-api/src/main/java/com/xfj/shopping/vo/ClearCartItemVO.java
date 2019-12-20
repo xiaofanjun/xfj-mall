@@ -11,8 +11,8 @@ import java.util.List;
 @Data
 public class ClearCartItemVO extends AbstractRequest {
 
-    private Long userId;
-    private List<Long> productIds;
+    private String userId;
+    private List<String> productIds;
 
     @Override
     public void requestCheck() {

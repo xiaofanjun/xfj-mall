@@ -10,8 +10,8 @@ import lombok.Data;
  */
 @Data
 public class DeleteCartItemVO extends AbstractRequest {
-    private Long userId;
-    private Long itemId;
+    private String userId;
+    private String itemId;
 
     @Override
     public void requestCheck() {

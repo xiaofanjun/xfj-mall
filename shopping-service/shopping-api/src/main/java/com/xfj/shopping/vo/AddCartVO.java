@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class AddCartVO extends AbstractRequest {
 
-    private Long userId;
-    private Long itemId;
+    private String userId;
+    private String itemId;
     private Integer num;
 
     @Override

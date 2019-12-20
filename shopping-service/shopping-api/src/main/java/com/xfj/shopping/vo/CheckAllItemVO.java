@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Data
 public class CheckAllItemVO extends AbstractRequest {
-    private Long userId;
+    private String userId;
     private String checked;
 
     @Override

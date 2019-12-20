@@ -11,8 +11,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Data
 public class UpdateCartNumVO extends AbstractRequest {
-    private Long userId;
-    private Long itemId;
+    private String userId;
+    private String itemId;
     private Integer num;
     private String checked;
 
