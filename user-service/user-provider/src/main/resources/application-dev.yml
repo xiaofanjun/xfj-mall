@@ -21,8 +21,8 @@ spring:
     useGlobalDataSourceStat: true
   redisson:
     address: 121.36.1.22:6379
-#    address: redis4xfj.redis.rds.aliyuncs.com:6379
-   # password: zhangqiang-redis
+    #    address: redis4xfj.redis.rds.aliyuncs.com:6379
+    # password: zhangqiang-redis
     timeout: 3000
     database: 0
     pool:
@@ -50,7 +50,7 @@ spring:
 dubbo:
   application:
     name: user-service
-    owner: Mic
+    owner: xfj
   protocol:
     name: dubbo
     port: 20880

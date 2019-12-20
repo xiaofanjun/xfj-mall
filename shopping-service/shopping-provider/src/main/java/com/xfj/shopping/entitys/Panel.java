@@ -2,15 +2,18 @@ package com.xfj.shopping.entitys;
 
 import com.xfj.commons.base.domain.BaseDO;
 import lombok.Data;
-import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * @Author ZQ
+ * @Description 内容分类
+ * @Date 2019/12/20 19:37
+ * @Param
+ * @return
+ **/
 @Data
 @Table(name = "tb_panel")
 public class Panel extends BaseDO<String> {
@@ -28,13 +31,10 @@ public class Panel extends BaseDO<String> {
 
     private String remark;
 
-    private Date created;
-
-    private Date updated;
 
     private List<PanelContentItem> panelContentItems;
 
     @Transient
-    private Long productId;
+    private String productId;
 
 }

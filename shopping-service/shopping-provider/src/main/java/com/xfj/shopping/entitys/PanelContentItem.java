@@ -13,11 +13,11 @@ import java.util.Date;
 @Table(name = "tb_panel_content_item")
 public class PanelContentItem extends BaseDO<String> {
 
-    private Integer panelId;
+    private String panelId;
 
     private Integer type;
 
-    private Long productId;
+    private String productId;
 
     private Integer sortOrder;
 
@@ -28,10 +28,6 @@ public class PanelContentItem extends BaseDO<String> {
     private String picUrl2;
 
     private String picUrl3;
-
-    private Date created;
-
-    private Date updated;
 
     private String productName;
 

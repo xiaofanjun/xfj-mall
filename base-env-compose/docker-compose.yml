@@ -50,7 +50,7 @@ services:
   volumes:
     - "/opt/mall-env/custom-config/kafka/logs:/opt/kafka_2.12-2.3.0/logs" #日志文件
   environment:
-    KAFKA_ADVERTISED_HOST_NAME: localhost
+    KAFKA_ADVERTISED_HOST_NAME: 121.36.1.22
     KAFKA_ADVERTISED_PORT: 9092
     #      HOSTNAME_COMMAND: "cat /etc/hosts | tail -1 | awk '{print $$1}'"
     #      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:9094
@@ -58,7 +58,7 @@ services:
     #      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
     #      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    KAFKA_JVM_PERFORMANCE_OPTS: "-Xmx256m -Xms256m"
+    KAFKA_JVM_PERFORMANCE_OPTS: "-Xmx512m -Xms512m"
     
  redis:
     image: redis
@@ -100,4 +100,15 @@ services:
       - dubbo.registry.address=zookeeper://121.36.1.22:2181
       - dubbo.admin.root.password=root
       - dubbo.admin.guest.password=guest
-      - dubbo-group.address=dubbo-prod
+      - dubbo-group.address=dubbo-prod     
+ nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - "/opt/mall-env/custom-config/nginx/conf/nginx.conf:/etc/nginx/conf.d/default.conf" #持久化配置文件
+      - "/opt/image/userHead:/home/image/" #持久化头像图片存放路径
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80

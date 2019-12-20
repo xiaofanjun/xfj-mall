@@ -7,8 +7,14 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
-import java.util.Date;
 
+/**
+ * @Author ZQ
+ * @Description 商品表
+ * @Date 2019/12/20 19:35
+ * @Param
+ * @return
+ **/
 @Table(name = "tb_item")
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -29,9 +35,6 @@ public class Item extends BaseDO<String> {
 
     private Integer status;
 
-    private Date created;
-
-    private Date updated;
 
     @Transient
     private String imageBig;

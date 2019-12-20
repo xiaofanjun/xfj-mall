@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
-@MapperScan(basePackages = "com.xfj.shopping.dal")
+@MapperScan(basePackages = "com.xfj.shopping.mapper")
 @ComponentScan(basePackages = "com.xfj.shopping")
 @SpringBootApplication
 @EnableTransactionManagement

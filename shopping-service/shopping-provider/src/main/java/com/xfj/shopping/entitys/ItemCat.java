@@ -3,18 +3,21 @@ package com.xfj.shopping.entitys;
 import com.xfj.commons.base.domain.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
+/**
+ * @Author ZQ
+ * @Description 商品类目
+ * @Date 2019/12/20 19:35
+ * @Param
+ * @return
+ **/
 @Table(name = "tb_item_cat")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class ItemCat extends BaseDO<String> {
-    private Long parentId;
+    private String parentId;
 
     private String name;
 
@@ -28,7 +31,4 @@ public class ItemCat extends BaseDO<String> {
 
     private String remark;
 
-    private Date created;
-
-    private Date updated;
 }
