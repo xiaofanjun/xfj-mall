@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class OrderListVO extends AbstractRequest {
 
-    private Long userId;
+    private String userId;
     private Integer page;
     private Integer size;
     private String sort;

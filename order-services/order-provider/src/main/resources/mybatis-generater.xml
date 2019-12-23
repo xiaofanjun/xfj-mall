@@ -10,19 +10,19 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.gpmall.commons.tool.tkmapper.TkMapper"/>
+            <property name="mappers" value="com.xfj.commons.tool.tkmapper.TkMapper"/>
         </plugin>
         <plugin type="com.github.trang.mybatis.generator.plugins.MapperSqlMapConfigPlugin"/>
 
         <!--数据库连接 -->
 <!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/gpmall"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/xfj"
                         userId="root"
                         password="123">
             <property name="useInformationSchema" value="true"/>
         </jdbcConnection>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://mysql.gpmall.com:3306/gpmall"
+                        connectionURL="jdbc:mysql://mysql.xfj.com:3306/xfj"
                         userId="root"
                         password="123">
             <property name="useInformationSchema" value="true"/>
@@ -34,16 +34,16 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.gpmall.order.dal.entitys"
+        <javaModelGenerator targetPackage="com.xfj.order.dal.entitys"
                             targetProject="src/main/java">
             <!--继承BaseModel-->
             <!--<property name="rootClass" value="BaseModel"/>-->
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.gpmall.order.dal.persistence" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="com.xfj.order.dal.persistence" targetProject="src/main/java"/>
 
-        <javaClientGenerator targetPackage="com.gpmall.order.dal.persistence"
+        <javaClientGenerator targetPackage="com.xfj.order.dal.persistence"
                              targetProject="src/main/java"
                              type="XMLMAPPER"/>
         <!--已生成的表

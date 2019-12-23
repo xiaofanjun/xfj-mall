@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class OrderCountVO extends AbstractRequest {
 
-    private Long userId;
+    private String userId;
 
     @Override
     public void requestCheck() {

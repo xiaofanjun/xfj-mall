@@ -20,9 +20,9 @@ import java.util.List;
 public class CreateOrderVO extends AbstractRequest {
 
 
-    private Long userId;
+    private String userId;
 
-    private Long addressId;
+    private String addressId;
 
     private String tel;
 

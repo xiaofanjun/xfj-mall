@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @ComponentScan(basePackages = {"com.xfj.order"})
-@MapperScan(basePackages = "com.gpmall.order.dal")
+@MapperScan(basePackages = "com.xfj.order.mapper")
 @SpringBootApplication
 @EnableTransactionManagement
 public class OrderProviderApplication {

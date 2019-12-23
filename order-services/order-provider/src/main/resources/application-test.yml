@@ -57,7 +57,7 @@ dubbo:
     cycle-report: false
     group: dubbo-test
   scan:
-    base-packages: com.gpmall.order.services
+    base-packages: com.xfj.order.services
 logging:
   config:
     classpath: logback.xml
