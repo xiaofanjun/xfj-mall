@@ -14,9 +14,9 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 public class UpdateAddressVO extends AbstractRequest {
 
-    private Long addressId;
+    private String addressId;
 
-    private Long userId;
+    private String userId;
 
     private String userName;
 

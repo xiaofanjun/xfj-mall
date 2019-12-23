@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class QueryMemberVO extends AbstractRequest {
 
-    private Long userId;
+    private String userId;
 
     @Override
     public void requestCheck() {

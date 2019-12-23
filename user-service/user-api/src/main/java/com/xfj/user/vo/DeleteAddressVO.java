@@ -12,7 +12,7 @@ import lombok.Data;
  **/
 @Data
 public class DeleteAddressVO extends AbstractRequest {
-    private Long addressId;
+    private String addressId;
 
     @Override
     public void requestCheck() {

@@ -16,7 +16,7 @@ public class UpdateMemberVO extends AbstractRequest {
     /**
      * 主键
      */
-    private Long id;
+    private String id;
     /**
      * 注册手机号
      */

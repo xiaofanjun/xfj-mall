@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 public class AddAddressVO extends AbstractRequest {
 
-    private Long userId;
+    private String userId;
 
     private String userName;
 

@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 public class AddressDetailVO extends AbstractRequest {
-    private Long addressId;
+    private String addressId;
 
     @Override
     public void requestCheck() {

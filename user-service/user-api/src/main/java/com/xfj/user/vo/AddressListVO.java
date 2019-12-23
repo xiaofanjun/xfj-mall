@@ -12,7 +12,7 @@ import lombok.Data;
  **/
 @Data
 public class AddressListVO extends AbstractRequest {
-    private Long userId;
+    private String userId;
 
     @Override
     public void requestCheck() {

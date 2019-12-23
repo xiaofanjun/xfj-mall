@@ -70,7 +70,7 @@ public class AddressServiceBl extends BaseService<Address, String> {
     }
 
     //地址只能有一个默认
-    private void checkAddressDefaultUnique(boolean isDefault, Long userId) {
+    private void checkAddressDefaultUnique(boolean isDefault, String userId) {
         if (isDefault) {
             Example example = new Example(Address.class);
             example.createCriteria().andEqualTo("userId", userId);

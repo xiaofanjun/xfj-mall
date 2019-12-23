@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 public class QueryMemberRS extends AbstractResponse {
 
-    private Long id;
+    private String id;
 
     private String username;
 
