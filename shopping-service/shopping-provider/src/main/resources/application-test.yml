@@ -46,5 +46,5 @@ dubbo:
     cycle-report: false
     group: dubbo-test
   scan:
-    base-packages: com.gpmall.shopping.services
+    base-packages: com.xfj.shopping.services
 
