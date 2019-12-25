@@ -1,0 +1,16 @@
+dubbo:
+  application:
+    name: xfj-cashier
+    owner: zq
+  registry:
+    address: zookeeper://121.36.1.22:2181
+    check: true
+    group: dubbo-prod
+    simplified: true
+  metadata-report:
+    address: zookeeper://121.36.1.22:2181
+    retry-times: 30
+    cycle-report: false
+    group: dubbo-prod
+  scan:
+    base-packages: com.xfj.cashier

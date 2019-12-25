@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: xfj-cashier
+  profiles:
+    active: dev
+server:
+  port: 5080
+
+
