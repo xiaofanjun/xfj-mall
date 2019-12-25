@@ -1,0 +1,19 @@
+dubbo:
+  application:
+    name: xfj-shopping
+    owner: zq
+  registry:
+    address: zookeeper://121.36.1.22:2181
+    check: true
+    group: dubbo-test
+    simplified: true
+  metadata-report:
+    address: zookeeper://121.36.1.22:2181
+    retry-times: 30
+    cycle-report: false
+    group: dubbo-test
+  scan:
+    base-packages: com.xfj.shopping
+
+swagger:
+  enable: true

@@ -32,7 +32,7 @@ public class MemberController {
      * @return
      */
     @GetMapping("/member/{id}")
-    public ResponseData searchMemberById(@PathVariable(name = "id") long id) {
+    public ResponseData searchMemberById(@PathVariable(name = "id") String id) {
         QueryMemberVO request = new QueryMemberVO();
         request.setUserId(id);
         QueryMemberRS queryMemberResponse = memberService.queryMemberById(request);

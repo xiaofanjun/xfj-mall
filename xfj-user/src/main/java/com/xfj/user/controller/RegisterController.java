@@ -1,7 +1,6 @@
 package com.xfj.user.controller;
 
 import com.xfj.commons.result.ResponseData;
-import com.xfj.commons.result.ResponseUtil;
 import com.xfj.commons.tool.utils.CookieUtil;
 import com.xfj.user.IKaptchaService;
 import com.xfj.user.IUserRegisterService;

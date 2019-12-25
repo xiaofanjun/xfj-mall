@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: xfj-shopping
+  profiles:
+      active: dev
+server:
+  port: 6080
+
+
