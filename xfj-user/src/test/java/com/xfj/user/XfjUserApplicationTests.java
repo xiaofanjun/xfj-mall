@@ -1,4 +1,4 @@
-package com.xfj.user.xfjuser;
+package com.xfj.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,7 +2,7 @@ spring:
   application:
     name: xfj-cashier
   profiles:
-    active: dev
+    active: test
 server:
   port: 5080
 

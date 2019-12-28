@@ -99,7 +99,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.xfj.user.xfjuser.xfjUserApplication</mainClass>
+                    <mainClass>com.xfj.user.XfjUserApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
