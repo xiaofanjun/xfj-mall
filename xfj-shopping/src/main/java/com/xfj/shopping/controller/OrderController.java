@@ -44,7 +44,7 @@ public class OrderController {
     public ResponseData order(@RequestBody CreateOrderVO request, HttpServletRequest servletRequest){
         String userInfo=(String)servletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject object= JSON.parseObject(userInfo);
-        Long uid=Long.parseLong(object.get("uid").toString());
+        String uid=object.get("uid").toString();
         request.setUserId(uid);
         request.setUniqueKey(UUID.randomUUID().toString());
         CreateOrderRS response=orderCoreService.createOrder(request);
@@ -71,7 +71,7 @@ public class OrderController {
         request.setSort(pageInfo.getSort());
         String userInfo=(String)servletRequest.getAttribute(TokenIntercepter.USER_INFO_KEY);
         JSONObject object= JSON.parseObject(userInfo);
-        Long uid=Long.parseLong(object.get("uid").toString());
+        String uid=object.get("uid").toString();
         request.setUserId(uid);
         OrderListRS listResponse = orderQueryService.orderList(request);
         if(listResponse.getCode().equals(OrderRetCode.SUCCESS.getCode())){
