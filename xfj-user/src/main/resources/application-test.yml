@@ -3,15 +3,16 @@ dubbo:
     name: xfj-user
     owner: Zq
   registry:
-    address: zookeeper://192.168.1.105:2181
+    address: zookeeper://121.36.1.22:2181
     check: true
-    group: dubbo-dev
+    group: dubbo-test
     simplified: true
   metadata-report:
-    address: zookeeper://192.168.1.105:2181
+    address: zookeeper://121.36.1.22:2181
     retry-times: 30
     cycle-report: false
-    group: dubbo-dev
+    group: dubbo-test
   scan:
     base-packages: com.xfj.user
-captchaFlag : true
+
+captchaFlag : false
