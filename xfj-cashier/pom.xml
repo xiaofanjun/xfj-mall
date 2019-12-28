@@ -81,7 +81,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.xfj.cashier.bootstrap.xfjCashierApplication</mainClass>
+                    <mainClass>com.xfj.cashier.XfjCashierApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

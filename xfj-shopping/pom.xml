@@ -101,7 +101,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.xfj.shopping.xfjshopping.xfjShoppingApplication</mainClass>
+                    <mainClass>com.xfj.shopping.XfjShoppingApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

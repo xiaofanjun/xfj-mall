@@ -1,0 +1,19 @@
+version: '3'
+services:
+ xfjUserServer:
+   image: xfj-user:0.1
+   container_name: xfjUser1
+   ports:
+    - "7080:7080"
+ xfjShoppingServer:
+   image: xfj-shopping:0.1
+   container_name: xfjShopping1
+   ports:
+    - "6080:6080"
+ xfjCashierServer:
+   image: xfj-cashier:0.1
+   container_name: xfjCashier1
+   ports:
+    - "5080:5080"    
+   
+
