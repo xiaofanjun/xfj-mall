@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.util.Base64;
 
 @Data
+@Service
 public class WechatPaymentConfig extends WXPayConfig {
 
     @Value("${wechat.wechat_appid}")

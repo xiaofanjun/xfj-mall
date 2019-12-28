@@ -52,3 +52,31 @@ dubbo:
 logging:
   config:
     classpath: logback.xml
+#支付宝支付相关
+ali:
+  ali_service: 1111
+  ali_partner: 222
+  input_charset: 333
+  sign_type: 444
+  notify_url: 555
+  return_url: 666
+  seller_id: 777
+  seller_email: 888
+  pay_gateway_new: 999
+  it_b_pay: 1010
+  private_key: 12312321
+  public_key: 45454
+  pay_open_gateway: 2342
+  refund_service: 12312
+  refund_notify_url: 12312
+# 微信支付相关配置
+wechat:
+  wechat_appid: 123123
+  wechat_mch_id: 32423dsfs
+  wechat_appsecret: 123dfsf
+  wechat_mchsecret: 1231dfd
+  wechat_notifyurl: 1231
+  wechat_unified_order: 123
+  wechat_order_query: 2342
+  wechat_refund_url: 2342
+  wechat_refund_notify_url: 13

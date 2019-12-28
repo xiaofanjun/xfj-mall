@@ -3,31 +3,29 @@ services:
  userServer1:
    image: user-service:0.1
    container_name: userApp1
-   restart: always
    ports:
     - "8081:8081"
     #前面为注册到注册中心的端口，后面为docker监听的端口
     - "20881:20881"
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20881
     #绑定端口
-    DUBBO_PORT_TO_BIND: 20881
+    DUBBO_PORT_TO_BIND: 20881   
  orderServer1:
    image: order-service:0.1
    container_name: orderApp1
    depends_on:
     - userServer1
-   restart: always
    ports:
     - "8071:8071"
     #前面为注册到注册中心的端口，后面为docker监听的端口
     - "20871:20871"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20871
     #绑定端口
@@ -35,7 +33,6 @@ services:
  commnetServer1:
    image: comment-service:0.1
    container_name: commentApp1
-   restart: always
    depends_on:
     - orderServer1
    ports:
@@ -44,7 +41,7 @@ services:
     - "20861:20861"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20861
     #绑定端口
@@ -52,7 +49,6 @@ services:
  shoppingServer1:
    image: shopping-service:0.1
    container_name: shoppingApp1
-   restart: always
    depends_on:
     - commnetServer1
    ports:
@@ -61,7 +57,7 @@ services:
     - "20851:20851"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20851
     #绑定端口
@@ -69,7 +65,6 @@ services:
  couponServer1:
    image: coupon-service:0.1
    container_name: couponApp1
-   restart: always
    depends_on:
     - shoppingServer1
    ports:
@@ -78,7 +73,7 @@ services:
     - "20841:20841"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20841
     #绑定端口
@@ -86,7 +81,6 @@ services:
  payServer:
    image: pay-service:0.1
    container_name: payApp1
-   restart: always
    depends_on:
     - couponServer1
    ports:
@@ -95,7 +89,7 @@ services:
     - "20831:20831"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20831
     #绑定端口
@@ -103,7 +97,6 @@ services:
  searchServer1:
    image: search-service:0.1
    container_name: searchApp1
-   restart: always
    depends_on:
     - payServer
    ports:
@@ -112,7 +105,7 @@ services:
     - "20821:20821"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.10.150
+    DUBBO_IP_TO_REGISTRY: 192.168.244.129
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20821
     #绑定端口
