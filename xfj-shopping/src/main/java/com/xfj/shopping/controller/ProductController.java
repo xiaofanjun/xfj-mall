@@ -30,7 +30,7 @@ public class ProductController {
     @GetMapping("/product/{id}")
     @ApiOperation("查询商品详情")
     @ApiImplicitParam(name = "id", value = "商品ID", paramType = "path", required = true)
-    public ResponseData product(@PathVariable long id) {
+    public ResponseData product(@PathVariable String id) {
         ProductDetailVO request = new ProductDetailVO();
         request.setId(id);
         ProductDetailRS response = productService.getProductDetail(request);

@@ -30,5 +30,5 @@ public class PageInfo {
     private Integer priceLte;
 
     @ApiModelProperty(name = "cid", value = "页码", example = "1")
-    private Long cid;
+    private String cid;
 }
