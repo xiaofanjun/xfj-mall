@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 @RequestMapping("/cashier")
 public class PayController {
 
-    @Reference(timeout = 3000, retries = 0)
+    @Reference(timeout = 3000, retries = 0, group = "${dubbo-group.name}")
     PayCoreService payCoreService;
 
     @PostMapping("/pay")

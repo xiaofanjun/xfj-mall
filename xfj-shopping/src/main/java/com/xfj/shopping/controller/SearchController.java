@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/shopping")
 @Api(tags = "SearchController", description = "搜索控制层")
 public class SearchController {
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     private ProductSearchService productSearchService;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     private InitDataService initDataService;
 
     @PostMapping("/search")
@@ -64,10 +64,10 @@ public class SearchController {
 
     @Anoymous
     @GetMapping("/search/{key}")
-    public ResponseData search(@PathVariable("key")String key){
-        SearchVO searchRequest=new SearchVO();
+    public ResponseData search(@PathVariable("key") String key) {
+        SearchVO searchRequest = new SearchVO();
         searchRequest.setKeyword(key);
-        SearchRS searchResponse=productSearchService.fuzzySearch(searchRequest);
+        SearchRS searchResponse = productSearchService.fuzzySearch(searchRequest);
         if (searchResponse.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
             return new ResponseUtil().setData(searchResponse.getData());
         }
@@ -76,7 +76,7 @@ public class SearchController {
 
     @Anoymous
     @GetMapping("/search/init")
-    public ResponseData init(){
+    public ResponseData init() {
         initDataService.initItems();
         return new ResponseUtil().setData(null);
     }

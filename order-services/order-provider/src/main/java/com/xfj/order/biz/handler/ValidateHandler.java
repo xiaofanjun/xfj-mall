@@ -20,7 +20,7 @@ public class ValidateHandler extends AbstractTransHandler {
     @Autowired
     OrderMapper orderMapper;
 
-    @Reference(mock = "com.xfj.order.biz.mock.MockMemberService", check = false)
+    @Reference(mock = "com.xfj.order.biz.mock.MockMemberService", check = false, group = "${dubbo-group.name}")
     IMemberService memberService;
 
     @Override

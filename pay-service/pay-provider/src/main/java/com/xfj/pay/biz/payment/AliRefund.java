@@ -55,7 +55,7 @@ public class AliRefund extends BasePayment {
     @Autowired
     PaymentMapper paymentMapper;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     OrderCoreService orderCoreService;
 
     @Autowired

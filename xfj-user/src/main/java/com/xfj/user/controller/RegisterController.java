@@ -27,10 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class RegisterController {
 
-    @Reference(timeout = 3000, retries = -1)
+    @Reference(timeout = 3000, retries = -1, group = "${dubbo-group.name}")
     IUserRegisterService iUserRegisterService;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IKaptchaService kaptchaService;
 
     /**

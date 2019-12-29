@@ -24,7 +24,7 @@ import java.util.Map;
 @RestController
 public class PayNotifyController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     private PayCoreService payCoreService;
 
     /**

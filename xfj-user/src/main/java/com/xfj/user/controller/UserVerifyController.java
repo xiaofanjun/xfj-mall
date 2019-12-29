@@ -23,10 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserVerifyController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IUserRegisterService iUserRegisterService;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IUserVerifyService iUserVerifyService;
 
     @Anoymous

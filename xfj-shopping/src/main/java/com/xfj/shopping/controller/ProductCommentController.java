@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/shopping/comment")
 @Api(tags = "ProductCommentController", description = "商品评价控制层")
 public class ProductCommentController {
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     ICommentService commentService;
 
     @GetMapping("/all")

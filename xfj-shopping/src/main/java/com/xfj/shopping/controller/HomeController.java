@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "HomeController", description = "导航控制层")
 public class HomeController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IContentService contentService;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IHomeService iHomeService;
 
     @Anoymous
     @GetMapping("/navigation")
     @ApiOperation("导航")
-    public ResponseData navigation(){
-        NavListRS response=contentService.queryNavList();
-        if(response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
+    public ResponseData navigation() {
+        NavListRS response = contentService.queryNavList();
+        if (response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
             return new ResponseUtil().setData(response.getPannelContentDtos());
         }
         return new ResponseUtil().setErrorMsg(response.getMsg());
@@ -40,9 +40,9 @@ public class HomeController {
     @Anoymous
     @GetMapping("/homepage")
     @ApiOperation("主页")
-    public ResponseData homepage(){
-        HomePageRS response=iHomeService.homepage();
-        if(response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
+    public ResponseData homepage() {
+        HomePageRS response = iHomeService.homepage();
+        if (response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
             return new ResponseUtil().setData(response.getPanelContentItemDtos());
         }
         return new ResponseUtil().setErrorMsg(response.getMsg());

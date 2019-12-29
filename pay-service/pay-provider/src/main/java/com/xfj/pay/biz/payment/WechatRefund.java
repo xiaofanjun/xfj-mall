@@ -51,9 +51,9 @@ public class WechatRefund extends BasePayment {
     @Resource(name = "wechatPaymentValidator")
     private Validator validator;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     OrderQueryService orderQueryService;
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     OrderCoreService orderCoreService;
     @Autowired
     RefundMapper refundMapper;

@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "CartController", description = "购物车控制层")
 public class CartController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     ICartService iCartService;
 
     /**

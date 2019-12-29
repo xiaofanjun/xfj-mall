@@ -32,10 +32,10 @@ import java.util.Map;
 @RequestMapping("/user")
 public class LoginController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IUserLoginService iUserLoginService;
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IKaptchaService kaptchaService;
 
     /**

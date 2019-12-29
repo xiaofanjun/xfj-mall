@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class MemberController {
 
-    @Reference(timeout = 3000, retries = -1)
+    @Reference(timeout = 3000, retries = -1, group = "${dubbo-group.name}")
     IMemberService memberService;
 
     /**

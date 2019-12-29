@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service("aliPaymentValidator")
 public class AliPaymentValidator extends BaseValidator {
-	@Reference(timeout = 3000)
-	OrderQueryService orderQueryService;
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
+    OrderQueryService orderQueryService;
 
-	@Override
-	public void specialValidate(AbstractRequest request) {
-       super.commonValidate(request,orderQueryService);
-	}
+    @Override
+    public void specialValidate(AbstractRequest request) {
+        super.commonValidate(request, orderQueryService);
+    }
 }

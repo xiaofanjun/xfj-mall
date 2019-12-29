@@ -53,7 +53,7 @@ public class WechatPayment extends BasePayment {
 
     private final String COMMENT_GLOBAL_ID_CACHE_KEY = "COMMENT_ID";
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     OrderCoreService orderCoreService;
 
     @Override

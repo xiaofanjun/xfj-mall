@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service("wechatPaymentValidator")
 public class WechatPaymentValidator extends BaseValidator {
-     @Reference(timeout=3000)
-     OrderQueryService orderQueryService;
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
+    OrderQueryService orderQueryService;
+
     @Override
     public void specialValidate(AbstractRequest request) {
-        commonValidate(request,orderQueryService);
+        commonValidate(request, orderQueryService);
     }
 }

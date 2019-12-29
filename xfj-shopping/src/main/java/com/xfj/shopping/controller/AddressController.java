@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "AddressController", description = "地址控制层")
 public class AddressController {
 
-    @Reference(timeout = 3000, group = "dubbo-test")
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IAddressService addressService;
 
     /**

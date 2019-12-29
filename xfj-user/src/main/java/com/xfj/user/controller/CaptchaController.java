@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/user")
 public class CaptchaController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IKaptchaService kaptchaService;
 
     /**

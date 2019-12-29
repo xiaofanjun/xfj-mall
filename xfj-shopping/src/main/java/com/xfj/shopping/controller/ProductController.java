@@ -23,19 +23,19 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "ProductController", description = "商品控制层")
 public class ProductController {
 
-    @Reference(timeout = 3000)
+    @Reference(timeout = 3000, group = "${dubbo-group.name}")
     IProductService productService;
 
     @Anoymous
     @GetMapping("/product/{id}")
     @ApiOperation("查询商品详情")
     @ApiImplicitParam(name = "id", value = "商品ID", paramType = "path", required = true)
-    public ResponseData product(@PathVariable long id){
-        ProductDetailVO request=new ProductDetailVO();
+    public ResponseData product(@PathVariable long id) {
+        ProductDetailVO request = new ProductDetailVO();
         request.setId(id);
-        ProductDetailRS response=productService.getProductDetail(request);
+        ProductDetailRS response = productService.getProductDetail(request);
 
-        if(response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
+        if (response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
             return new ResponseUtil().setData(response.getProductDetailDto());
         }
         return new ResponseUtil().setErrorMsg(response.getMsg());
@@ -43,6 +43,7 @@ public class ProductController {
 
     /**
      * 返回商品列表
+     *
      * @param pageInfo
      * @return
      */
@@ -50,17 +51,17 @@ public class ProductController {
     @GetMapping("/goods")
     @ApiOperation("查询商品列表")
     @ApiImplicitParam(name = "pageInfo", value = "分页信息", dataType = "PageInfo", required = true)
-    public ResponseData goods(PageInfo pageInfo){
-        AllProductVO request=new AllProductVO();
+    public ResponseData goods(PageInfo pageInfo) {
+        AllProductVO request = new AllProductVO();
         request.setCid(pageInfo.getCid());
         request.setPage(pageInfo.getPage());
         request.setPriceGt(pageInfo.getPriceGt());
         request.setPriceLte(pageInfo.getPriceLte());
         request.setSize(pageInfo.getSize());
         request.setSort(pageInfo.getSort());
-        AllProductRS response=productService.getAllProduct(request);
-        if(response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
-            PageResponse pageResponse=new PageResponse();
+        AllProductRS response = productService.getAllProduct(request);
+        if (response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
+            PageResponse pageResponse = new PageResponse();
             pageResponse.setData(response.getProductDtoList());
             pageResponse.setTotal(response.getTotal());
             return new ResponseUtil().setData(pageResponse);
@@ -70,14 +71,15 @@ public class ProductController {
 
     /**
      * 返回推荐的商品
+     *
      * @return
      */
     @Anoymous
     @GetMapping("/recommend")
     @ApiOperation("查询推荐的商品")
-    public ResponseData recommend(){
-        RecommendRS response=productService.getRecommendGoods();
-        if(response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
+    public ResponseData recommend() {
+        RecommendRS response = productService.getRecommendGoods();
+        if (response.getCode().equals(ShoppingRetCode.SUCCESS.getCode())) {
             return new ResponseUtil().setData(response.getPanelContentItemDtos());
         }
         return new ResponseUtil().setErrorMsg(response.getMsg());

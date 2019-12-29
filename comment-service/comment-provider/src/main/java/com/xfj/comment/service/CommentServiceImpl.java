@@ -41,7 +41,7 @@ public class CommentServiceImpl implements ICommentService {
 
     private final CommentConverter commentConverter;
 
-    @Reference()
+    @Reference(group = "${dubbo-group.name}")
     private OrderQueryService orderQueryService;
 
     private final GlobalIdGeneratorUtil globalIdGeneratorUtil;
