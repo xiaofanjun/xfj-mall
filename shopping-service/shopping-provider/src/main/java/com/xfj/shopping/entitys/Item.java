@@ -31,7 +31,7 @@ public class Item extends BaseDO<String> {
 
     private String image;
 
-    private Long cid;
+    private String cid;
 
     private Integer status;
 

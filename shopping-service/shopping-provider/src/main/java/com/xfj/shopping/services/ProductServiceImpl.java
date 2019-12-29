@@ -64,15 +64,15 @@ public class ProductServiceImpl implements IProductService {
                 response.setProductDetailDto(productDetailDto);
                 return response;
             }
-            Item item = itemMapper.selectByPrimaryKey(request.getId().longValue());
+            Item item = itemMapper.selectByPrimaryKey(request.getId());
             ProductDetailDto productDetailDto = new ProductDetailDto();
-            productDetailDto.setProductId(request.getId().longValue());
+            productDetailDto.setProductId(request.getId());
             productDetailDto.setProductName(item.getTitle());
             productDetailDto.setSubTitle(item.getSellPoint());
             productDetailDto.setLimitNum(item.getLimitNum() == null ? item.getNum().longValue() : item.getLimitNum().longValue());
             productDetailDto.setSalePrice(item.getPrice());
 
-            ItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(request.getId().longValue());
+            ItemDesc itemDesc = itemDescMapper.selectByPrimaryKey(request.getId());
             productDetailDto.setDetail(itemDesc.getItemDesc());
             if (StringUtils.isNotBlank(item.getImage())) {
                 String images[] = item.getImage().split(",");
@@ -97,7 +97,7 @@ public class ProductServiceImpl implements IProductService {
         try {
             List<ProductDto> productDtos = new ArrayList<>();
             PageHelper.startPage(request.getPage(), request.getSize());
-            String orderCol = "created";
+            String orderCol = "createdate";
             String orderDir = "desc";
             if (request.getSort().equals("1")) {
                 orderCol = "price";

@@ -2,12 +2,9 @@ package com.xfj.shopping.entitys;
 
 import com.xfj.commons.base.domain.BaseDO;
 import lombok.Data;
-import tk.mybatis.mapper.annotation.KeySql;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Data
 @Table(name = "tb_panel_content_item")

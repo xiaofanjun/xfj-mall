@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class PanelDto implements Serializable {
     private static final long serialVersionUID = -9099372701554072936L;
-    private Integer id;
+    private String id;
 
     private String name;
 

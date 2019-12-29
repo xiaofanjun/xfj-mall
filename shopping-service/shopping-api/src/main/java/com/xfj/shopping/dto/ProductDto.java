@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class ProductDto implements Serializable {
 
     private static final long serialVersionUID = 2763986506997467400L;
-    private Long productId;
+    private String productId;
 
     private BigDecimal salePrice;
 

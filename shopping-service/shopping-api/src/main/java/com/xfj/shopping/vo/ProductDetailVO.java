@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class ProductDetailVO extends AbstractRequest {
 
-    private Long id;
+    private String id;
 
     @Override
     public void requestCheck() {

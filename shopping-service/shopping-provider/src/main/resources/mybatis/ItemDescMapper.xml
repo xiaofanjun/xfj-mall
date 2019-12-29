@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xfj.shopping.mapper.ItemDescMapper">
-  <resultMap id="BaseResultMap" type="com.xfj.shopping.entitys.ItemDesc">
-    <id column="item_id" jdbcType="BIGINT" property="itemId" />
-    <result column="created" jdbcType="TIMESTAMP" property="created" />
-    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xfj.shopping.entitys.ItemDesc">
-    <result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.xfj.shopping.entitys.ItemDesc">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="createdate" jdbcType="TIMESTAMP" property="createdate"/>
+        <result column="modifydate" jdbcType="TIMESTAMP" property="modifydate"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="sass_id" jdbcType="VARCHAR" property="sass_id"/>
+        <result column="item_desc" jdbcType="VARCHAR" property="itemDesc"/>
+    </resultMap>
+
 </mapper>

@@ -8,13 +8,13 @@ import java.io.Serializable;
 public class PanelContentDto implements Serializable {
 
     private static final long serialVersionUID = -1584205373584476401L;
-    private Integer id;
+    private String id;
 
-    private Integer panelId;
+    private String panelId;
 
     private Integer type;
 
-    private Long productId;
+    private String productId;
 
     private Integer sortOrder;
 

@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ItemMapper extends BaseDao<Item> {
 
-    List<Item> selectItemFront(@Param("cid") Long cid,
+    List<Item> selectItemFront(@Param("cid") String cid,
                                @Param("orderCol") String orderCol, @Param("orderDir") String orderDir,
                                @Param("priceGt") Integer priceGt, @Param("priceLte") Integer priceLte);
 }

@@ -10,7 +10,7 @@ public class AllProductVO extends AbstractRequest {
     private Integer page;
     private Integer size;
     private String sort;
-    private Long cid;
+    private String cid;
     private Integer priceGt;
     private Integer priceLte;
 

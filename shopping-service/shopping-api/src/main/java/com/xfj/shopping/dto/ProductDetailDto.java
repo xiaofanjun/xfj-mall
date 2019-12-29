@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductDetailDto implements Serializable {
 
     private static final long serialVersionUID = -597050593951733519L;
-    private Long productId;
+    private String productId;
 
     private BigDecimal salePrice;
 

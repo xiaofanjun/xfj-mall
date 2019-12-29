@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class RecommendDto implements Serializable {
 
-    private Integer id;
+    private String id;
 
     private String name;
 

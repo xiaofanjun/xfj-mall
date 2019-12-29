@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 @Data
 public class ProductCateDto implements Serializable {
-    private Long id;
+    private String id;
     private String name;
-    private Long parentId;
+    private String parentId;
     private Boolean isParent;
     private String iconUrl;
 }

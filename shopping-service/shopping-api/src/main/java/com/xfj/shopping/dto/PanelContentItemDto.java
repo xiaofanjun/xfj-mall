@@ -10,13 +10,13 @@ import java.util.Date;
 public class PanelContentItemDto implements Serializable {
 
     private static final long serialVersionUID = -6930891177670846634L;
-    private Integer id;
+    private String id;
 
-    private Integer panelId;
+    private String panelId;
 
     private Integer type;
 
-    private Long productId;
+    private String productId;
 
     private Integer sortOrder;
 
@@ -27,10 +27,6 @@ public class PanelContentItemDto implements Serializable {
     private String picUrl2;
 
     private String picUrl3;
-
-    private Date created;
-
-    private Date updated;
 
     private String productName;
 

@@ -3,6 +3,10 @@
 <mapper namespace="com.xfj.shopping.mapper.ItemCatMapper">
     <resultMap id="BaseResultMap" type="com.xfj.shopping.entitys.ItemCat">
         <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="createdate" jdbcType="TIMESTAMP" property="createdate"/>
+        <result column="modifydate" jdbcType="TIMESTAMP" property="modifydate"/>
+        <result column="operator" jdbcType="VARCHAR" property="operator"/>
+        <result column="sass_id" jdbcType="VARCHAR" property="sass_id"/>
         <result column="parent_id" jdbcType="VARCHAR" property="parentId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
@@ -12,6 +16,6 @@
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, parent_id, name, status, sort_order, is_parent, icon, remark
+    id, createdate, modifydate,operator, sass_id, parent_id, name, status, sort_order, is_parent, icon, remark
   </sql>
 </mapper>

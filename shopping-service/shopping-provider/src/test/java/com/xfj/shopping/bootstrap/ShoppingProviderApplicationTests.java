@@ -64,7 +64,7 @@ public class ShoppingProviderApplicationTests {
     @Test
     public void testProductService() throws IOException {
         ProductDetailVO productDetailRequest = new ProductDetailVO();
-        productDetailRequest.setId(100023501L);
+        productDetailRequest.setId("100023501L");
         productService.getProductDetail(productDetailRequest);
 
         // ----------------------------------------------------------------------------
