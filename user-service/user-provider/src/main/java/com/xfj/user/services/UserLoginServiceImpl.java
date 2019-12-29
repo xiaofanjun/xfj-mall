@@ -29,7 +29,7 @@ import java.util.Map;
  * @Date 2019/11/27 21:24
  **/
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class UserLoginServiceImpl implements IUserLoginService {
     @Autowired
     MemberMapper memberMapper;

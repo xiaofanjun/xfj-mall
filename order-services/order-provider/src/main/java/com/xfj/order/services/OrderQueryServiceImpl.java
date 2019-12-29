@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class OrderQueryServiceImpl implements OrderQueryService {
 
     @Autowired
@@ -48,21 +48,22 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
     @Override
     public OrderCountRS orderCount(OrderCountVO request) {
-        OrderCountRS response=new OrderCountRS();
+        OrderCountRS response = new OrderCountRS();
         try {
             Long count = orderMapper.countAll();
             response.setCount(count.intValue());
             response.setCode(OrderRetCode.SUCCESS.getCode());
             response.setMsg(OrderRetCode.SUCCESS.getMessage());
-        }catch (Exception e){
-            log.error("OrderQueryServiceImpl.orderCount occur Exception :" +e);
-            ExceptionProcessorUtils.wrapperHandlerException(response,e);
+        } catch (Exception e) {
+            log.error("OrderQueryServiceImpl.orderCount occur Exception :" + e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
     }
 
     /**
      * 查询历史订单列表
+     *
      * @param request
      * @return
      * @author GP17513-成都-Rigel
@@ -70,67 +71,68 @@ public class OrderQueryServiceImpl implements OrderQueryService {
     @Override
     public OrderListRS orderList(OrderListVO request) {
         OrderListRS response = new OrderListRS();
-        try{
+        try {
             request.requestCheck();
             response.setCode(OrderRetCode.SUCCESS.getCode());
             response.setMsg(OrderRetCode.SUCCESS.getMessage());
-            PageHelper.startPage(request.getPage(),request.getSize());
+            PageHelper.startPage(request.getPage(), request.getSize());
             Example example = new Example(Order.class);
-            example.createCriteria().andEqualTo("userId",request.getUserId());
+            example.createCriteria().andEqualTo("userId", request.getUserId());
             List<Order> orderList = orderMapper.selectByExample(example);
-            if(CollectionUtils.isEmpty(orderList)){
+            if (CollectionUtils.isEmpty(orderList)) {
                 response.setTotal(0L);
                 response.setDetailInfoList(new ArrayList<>());
                 return response;
             }
             List<OrderDetailInfo> infos = new ArrayList<>();
-            PageInfo<Order> pageInfo=new PageInfo<>(orderList);
+            PageInfo<Order> pageInfo = new PageInfo<>(orderList);
             response.setTotal(pageInfo.getTotal());
-            orderList.forEach( order -> {
+            orderList.forEach(order -> {
                 OrderDetailInfo info = orderConverter.order2detail(order);
-                List<OrderItem> list =  orderItemMapper.queryByOrderId(order.getId());
+                List<OrderItem> list = orderItemMapper.queryByOrderId(order.getId());
 //                OrderItemExample itemExample=new OrderItemExample();
 //                itemExample.createCriteria().andOrderIdEqualTo(order.getOrderId());
 //                List<OrderItem> list=orderItemMapper.selectByExample(itemExample);
-                OrderShipping orderShipping=orderShippingMapper.selectByPrimaryKey(order.getId());
+                OrderShipping orderShipping = orderShippingMapper.selectByPrimaryKey(order.getId());
                 info.setOrderItemDto(orderConverter.item2dto(list));
                 info.setOrderShippingDto(orderConverter.shipping2dto(orderShipping));
                 infos.add(info);
             });
             response.setDetailInfoList(infos);
-        }catch (Exception e){
-            log.info("OrderQueryServiceImpl.orderList occur Exception: {}" , e);
-            ExceptionProcessorUtils.wrapperHandlerException(response,e);
+        } catch (Exception e) {
+            log.info("OrderQueryServiceImpl.orderList occur Exception: {}", e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
     }
 
     /**
      * 查询订单明细
+     *
      * @param request
      * @return
      */
     @Override
     public OrderDetailRS orderDetail(OrderDetailVO request) {
-        OrderDetailRS response=new OrderDetailRS();
-        try{
+        OrderDetailRS response = new OrderDetailRS();
+        try {
             request.requestCheck();
-            Order order=orderMapper.selectByPrimaryKey(request.getOrderId());
+            Order order = orderMapper.selectByPrimaryKey(request.getOrderId());
 //            OrderItemExample example=new OrderItemExample();
 //            OrderItemExample.Criteria criteria=example.createCriteria();
 //            criteria.andOrderIdEqualTo(order.getOrderId());
 //            List<OrderItem> list=orderItemMapper.selectByExample(example);
-            List<OrderItem> list =  orderItemMapper.queryByOrderId(order.getId());
-            OrderShipping orderShipping=orderShippingMapper.selectByPrimaryKey(order.getId());
-            response=orderConverter.order2res(order);
+            List<OrderItem> list = orderItemMapper.queryByOrderId(order.getId());
+            OrderShipping orderShipping = orderShippingMapper.selectByPrimaryKey(order.getId());
+            response = orderConverter.order2res(order);
             response.setOrderItemDto(orderConverter.item2dto(list));
             response.setOrderShippingDto(orderConverter.shipping2dto(orderShipping));
             response.setCode(OrderRetCode.SUCCESS.getCode());
             response.setMsg(OrderRetCode.SUCCESS.getMessage());
             return response;
-        }catch (Exception e){
-            log.error("OrderQueryServiceImpl.orderDetail occur Exception :" +e);
-            ExceptionProcessorUtils.wrapperHandlerException(response,e);
+        } catch (Exception e) {
+            log.error("OrderQueryServiceImpl.orderDetail occur Exception :" + e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
     }
@@ -146,9 +148,9 @@ public class OrderQueryServiceImpl implements OrderQueryService {
             response.setOrderDto(orderConverter.order2dto(order));
             response.setCode(OrderRetCode.SUCCESS.getCode());
             response.setMsg(OrderRetCode.SUCCESS.getMessage());
-        } catch (Exception e){
-            log.error("OrderQueryServiceImpl.orderItem occur Exception :" +e);
-            ExceptionProcessorUtils.wrapperHandlerException(response,e);
+        } catch (Exception e) {
+            log.error("OrderQueryServiceImpl.orderItem occur Exception :" + e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
     }

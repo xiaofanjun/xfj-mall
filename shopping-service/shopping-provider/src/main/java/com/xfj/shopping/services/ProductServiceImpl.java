@@ -32,9 +32,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class ProductServiceImpl implements IProductService {
-
     @Autowired
     CacheManager cacheManager;
     @Autowired

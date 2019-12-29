@@ -39,7 +39,7 @@ import java.util.Objects;
  * @Date 2019年8月10日
  */
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class ProductSearchServiceImpl implements ProductSearchService {
 
     @Autowired
@@ -48,17 +48,17 @@ public class ProductSearchServiceImpl implements ProductSearchService {
     @Autowired
     ProductConverter productConverter;
 
-	@Autowired
-	private RedissonClient redissonClient;
+    @Autowired
+    private RedissonClient redissonClient;
 
     @Override
     public SearchRS search(SearchVO request) {
 
         SearchRS response = new SearchRS();
-		try {
+        try {
             request.requestCheck();
             //统计搜索热词
-			staticsSearchHotWord(request);
+            staticsSearchHotWord(request);
             BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
             boolQueryBuilder.must(QueryBuilders.matchQuery("title", request.getKeyword()));
             if (request.getPriceGt() != null) {
@@ -83,83 +83,84 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
             List<ProductDto> productDtos = productConverter.items2Dto(itemDocuments);
             response.ok(productDtos);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             log.error("ProductSearchServiceImpl.search Occur Exception :" + e);
-            ExceptionProcessorUtils.wrapperHandlerException(response,e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
     }
 
 
-	@Override
+    @Override
     public SearchRS fuzzySearch(SearchVO request) {
         SearchRS response = new SearchRS();
         try {
             request.requestCheck();
-			//统计搜索热词
-			staticsSearchHotWord(request);
+            //统计搜索热词
+            staticsSearchHotWord(request);
             // 分页
-			PageInfo pageInfo=new PageInfo();
-			pageInfo.setPageNumber(request.getCurrentPage());
-			pageInfo.setPageSize(request.getPageSize());
-			pageInfo.setSort(new Sort(Sort.Direction.DESC,request.getSort()));
+            PageInfo pageInfo = new PageInfo();
+            pageInfo.setPageNumber(request.getCurrentPage());
+            pageInfo.setPageSize(request.getPageSize());
+            pageInfo.setSort(new Sort(Sort.Direction.DESC, request.getSort()));
             Page<ItemDocument> elasticRes =
-                    productRepository.search(QueryBuilders.matchQuery("title",request.getKeyword()),pageInfo);
+                    productRepository.search(QueryBuilders.matchQuery("title", request.getKeyword()), pageInfo);
             ArrayList<ItemDocument> itemDocuments = Lists.newArrayList(elasticRes);
             List<ProductDto> productDtos = productConverter.items2Dto(itemDocuments);
             response.setTotal(elasticRes.getTotalElements());
             response.ok(productDtos);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             log.error("ProductSearchServiceImpl.fuzzySearch Occur Exception :" + e);
-            ExceptionProcessorUtils.wrapperHandlerException(response,e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
         }
         return response;
     }
 
-	/**
-	 * 统计搜索热词
-	 * @param request request
-	 */
-	private void staticsSearchHotWord(SearchVO request) {
-		//搜索词
-		String keyword = request.getKeyword();
-		if(StringUtils.isNotEmpty(keyword)){
-			RScoredSortedSet<Object> scoredSortedSet = redissonClient.getScoredSortedSet(getSearchHotWordRedisKey());
-			Double score = scoredSortedSet.getScore(keyword);
-			if(score!=null){
-				scoredSortedSet.addAndGetRank(score+1.0,keyword);
-			}else{
-				scoredSortedSet.addScore(keyword,1);
+    /**
+     * 统计搜索热词
+     *
+     * @param request request
+     */
+    private void staticsSearchHotWord(SearchVO request) {
+        //搜索词
+        String keyword = request.getKeyword();
+        if (StringUtils.isNotEmpty(keyword)) {
+            RScoredSortedSet<Object> scoredSortedSet = redissonClient.getScoredSortedSet(getSearchHotWordRedisKey());
+            Double score = scoredSortedSet.getScore(keyword);
+            if (score != null) {
+                scoredSortedSet.addAndGetRank(score + 1.0, keyword);
+            } else {
+                scoredSortedSet.addScore(keyword, 1);
 
-			}
+            }
 
-		}
-	}
+        }
+    }
 
     @Override
-	@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     public SearchRS hotProductKeyword() {
-    	//商品热门搜索关键字
-		//获取到分数第一的 搜索词
-		SearchRS response = new SearchRS();
-		try {
-			RScoredSortedSet<Object> scoredSortedSet = redissonClient.getScoredSortedSet(getSearchHotWordRedisKey());
-			Object first = scoredSortedSet.first();
-			if(!Objects.isNull(first)){
-				response.ok(Collections.singletonList(first));
-			}
-		}catch (Exception e){
-			e.printStackTrace();
-			log.error("ProductSearchServiceImpl.hotProductKeyword Occur Exception :" + e);
-			ExceptionProcessorUtils.wrapperHandlerException(response,e);
-		}
+        //商品热门搜索关键字
+        //获取到分数第一的 搜索词
+        SearchRS response = new SearchRS();
+        try {
+            RScoredSortedSet<Object> scoredSortedSet = redissonClient.getScoredSortedSet(getSearchHotWordRedisKey());
+            Object first = scoredSortedSet.first();
+            if (!Objects.isNull(first)) {
+                response.ok(Collections.singletonList(first));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("ProductSearchServiceImpl.hotProductKeyword Occur Exception :" + e);
+            ExceptionProcessorUtils.wrapperHandlerException(response, e);
+        }
 
-		return response;
+        return response;
     }
 
     private String getSearchHotWordRedisKey() {
-		return SearchConstants.SEARCH_HOT_WORD_CACHE_KEY;
-	}
+        return SearchConstants.SEARCH_HOT_WORD_CACHE_KEY;
+    }
 }

@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  * @Date 2019/11/25 20:26
  **/
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class KaptchaServiceImpl implements IKaptchaService {
 
     @Autowired

@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Description 用户激活
  * @Date 2019/11/29 16:14
  **/
-@Service
+@Service(group = "${dubbo-group.name}")
 @Slf4j
 public class UserVerifyServiceImpl implements IUserVerifyService {
     @Autowired

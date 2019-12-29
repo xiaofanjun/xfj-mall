@@ -22,7 +22,7 @@ import java.util.List;
  * @Date 2019/11/27 21:23
  **/
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class AddressServiceImpl implements IAddressService {
 
     @Autowired

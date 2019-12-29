@@ -5,7 +5,7 @@ spring:
     password: zhangqiang
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    initialSize: 2
+    initialSize: 4
     minIdle: 1
     maxActive: 20
     maxWait: 60000
@@ -49,15 +49,18 @@ dubbo:
   registry:
     address: zookeeper://121.36.1.22:2181
     check: true
-    group: dubbo-dev
+    group: dubbo-group
     simplified: true
   metadata-report:
     address: zookeeper://121.36.1.22:2181
     retry-times: 30
     cycle-report: false
-    group: dubbo-dev
+    group: dubbo-group
   scan:
     base-packages: com.xfj.order.services
 logging:
   config:
     classpath: logback.xml
+
+dubbo-group:
+  name: dev

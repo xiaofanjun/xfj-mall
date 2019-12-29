@@ -1,9 +1,11 @@
 spring:
   profiles:
-    active: test
+    active: dev
 #mybatis:
 #  mapper-locations: classpath*:com/xfj/user/dal/persistence/*Mapper.xml"
 #  type-aliases-package: com.xfj.user.entitys
+server:
+  port: 6060
 
 pagehelper:
   helper-dialect: mysql

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class HomeServiceImpl implements IHomeService {
 
     @Autowired

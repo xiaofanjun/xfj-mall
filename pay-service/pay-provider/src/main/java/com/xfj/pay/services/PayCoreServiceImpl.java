@@ -15,7 +15,7 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@Service(cluster = "failover")
+@Service(cluster = "failover", group = "${dubbo-group.name}")
 public class PayCoreServiceImpl implements PayCoreService {
 
 

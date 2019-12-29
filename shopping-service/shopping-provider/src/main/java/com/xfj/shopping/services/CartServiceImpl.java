@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class CartServiceImpl implements ICartService {
 
     @Autowired

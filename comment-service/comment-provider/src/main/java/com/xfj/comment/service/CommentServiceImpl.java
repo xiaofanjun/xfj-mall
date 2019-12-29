@@ -32,7 +32,7 @@ import java.util.List;
  * @date 2019/8/12 21:13
  * 商品评价服务实现
  */
-@Service
+@Service(group = "${dubbo-group.name}")
 public class CommentServiceImpl implements ICommentService {
 
     private final CommentMapper commentMapper;
@@ -269,6 +269,7 @@ public class CommentServiceImpl implements ICommentService {
 
     /**
      * 执行业务逻辑
+     *
      * @param request 评价参数
      */
     private AddCommentRS doAddComment(AddCommentVO request) {
@@ -284,8 +285,8 @@ public class CommentServiceImpl implements ICommentService {
 
         Example example = new Example(Comment.class);
         example.createCriteria()
-        .andEqualTo(orderId)
-        .andEqualTo(itemId);
+                .andEqualTo(orderId)
+                .andEqualTo(itemId);
         List<Comment> comments = commentMapper.selectByExample(example);
         if (!CollectionUtils.isEmpty(comments)) {
             throw new CommentException(CommentRetCode.CURRENT_ORDER_ITEM_EXISTS_COMMENT.getCode(), CommentRetCode.CURRENT_ORDER_ITEM_EXISTS_COMMENT.getMessage());
@@ -330,8 +331,9 @@ public class CommentServiceImpl implements ICommentService {
 
     /**
      * 保存评价图片
+     *
      * @param commentId 商品评价id
-     * @param picPaths 图片路径
+     * @param picPaths  图片路径
      */
     private void saveCommentPictures(String commentId, List<String> picPaths) {
         CommentPicture commentPicture;

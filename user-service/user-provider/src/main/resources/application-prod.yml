@@ -57,13 +57,13 @@ dubbo:
   registry:
     address: zookeeper://121.36.1.22:2181
     check: true
-    group: dubbo-prod
+    group: dubbo-group
     simplified: true
   metadata-report:
     address: zookeeper://121.36.1.22:2181
     retry-times: 30
     cycle-report: false
-    group: dubbo-prod
+    group: dubbo-group
   scan:
     base-packages: com.xfj.user.services
 lock:
@@ -88,3 +88,6 @@ email:
   content:
   template-path: emailTemplate
   userMailActiveUrl: http://localhost:9999/xfj-user/gpuser/verify
+
+dubbo-group:
+  name: prod

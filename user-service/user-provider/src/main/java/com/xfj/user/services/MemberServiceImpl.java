@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date 2019/11/27 21:21
  **/
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class MemberServiceImpl implements IMemberService {
 
     @Autowired

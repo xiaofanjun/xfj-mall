@@ -1,6 +1,4 @@
-package com.xfj.order.services;/**
- * Created by mic on 2019/7/30.
- */
+package com.xfj.order.services;
 
 import com.xfj.order.OrderCoreService;
 import com.xfj.order.biz.TransOutboundInvoker;
@@ -29,7 +27,7 @@ import java.util.Date;
 
 
 @Slf4j
-@Service(cluster = "failfast")
+@Service(cluster = "failfast", group = "${dubbo-group.name}")
 public class OrderCoreServiceImpl implements OrderCoreService {
 
     @Autowired

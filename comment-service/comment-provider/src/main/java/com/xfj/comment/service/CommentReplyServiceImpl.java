@@ -31,7 +31,7 @@ import java.util.List;
  * @date 2019/8/21 22:55
  * 商品评价回复服务实现
  */
-@Service
+@Service(group = "${dubbo-group.name}")
 public class CommentReplyServiceImpl implements ICommentReplyService {
 
     private final CommentReplyMapper commentReplyMapper;

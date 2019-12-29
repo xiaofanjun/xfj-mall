@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+server:
+  port: 6082
 mybatis:
   mapper-locations: classpath*:com/xfj/comment/dal/persistence/*Mapper.xml"
   type-aliases-package: com.xfj.comment.dal.entitys

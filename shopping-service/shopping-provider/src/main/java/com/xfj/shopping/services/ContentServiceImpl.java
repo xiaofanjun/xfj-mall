@@ -16,7 +16,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
 @Slf4j
-@Service
+@Service(group = "${dubbo-group.name}")
 public class ContentServiceImpl implements IContentService {
 
     @Autowired
