@@ -30,7 +30,7 @@ spring:
       min-idle: 4
 dubbo:
   application:
-    name: user-service
+    name: shopping-service
     owner: zq
   protocol:
     name: dubbo
