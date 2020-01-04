@@ -4,8 +4,8 @@ spring:
 server:
   port: 6082
 mybatis:
-  mapper-locations: classpath*:com/xfj/comment/dal/persistence/*Mapper.xml"
-  type-aliases-package: com.xfj.comment.dal.entitys
+  mapper-locations: classpath:mybatis/*Mapper.xml
+  type-aliases-package: com.xfj.comment.entitys
 pagehelper:
   helper-dialect: mysql
   reasonable: true

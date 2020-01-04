@@ -13,31 +13,30 @@ services:
     - "/opt/mall-env/custom-config/mysql/data:/var/lib/mysql" #解决数据持久化
     - "/opt/mall-env/custom-config/mysql/config:/etc/mysql/conf.d" #加载自定义配置文件
     - "/opt/mall-env/custom-config/mysql/log:/var/log/mysql" #指定mysql日志输出目录
- elasticsearch:
-  image: elasticsearch:6.6.1
-  container_name: es
-  environment:
-    - cluster.name=elasticsearch
-    - bootstrap.memory_lock=true
-    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  ulimits:
-    memlock:
-      soft: -1
-      hard: -1
-  ports:
-    - 9200:9200
-    - 9300:9300
-  privileged: true 
-  volumes:
-    - "/usr/share/elasticsearch/data:/usr/share/elasticsearch/data"
     
+ elasticsearch:
+   image: elasticsearch:6.4.0
+   container_name: es
+   environment:
+    - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
+    - "discovery.type=single-node" #以单一节点模式启动
+    - "ES_JAVA_OPTS=-Xms200m -Xmx200m" #设置使用jvm内存大小
+   volumes:
+    - "/opt/mall-env/custom-config/es/plugins:/usr/share/elasticsearch/plugins" #插件文件挂载
+    - "/opt/mall-env/custom-config/es/data:/usr/share/elasticsearch/data" #数据文件挂载
+   ports:
+    - 9200:9200
+      
  kibana:
-  image: kibana:6.6.1
-  container_name: kibana
-  environment:
-    SERVER_NAME:
-    ELASTICSEARCH_HOSTS: http://localhost:9200
-  ports:
+   image: kibana:6.4.0
+   container_name: kibana
+   links:
+    - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+   depends_on:
+    - elasticsearch #kibana在elasticsearch启动之后再启动
+   environment:
+    - "elasticsearch.hosts=http://es:9200" #设置访问elasticsearch的地址
+   ports:
     - 5601:5601
     
  kafka:
@@ -58,19 +57,24 @@ services:
     #      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
     #      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    KAFKA_JVM_PERFORMANCE_OPTS: "-Xmx512m -Xms512m"
+    KAFKA_JVM_PERFORMANCE_OPTS: "-Xmx300m -Xms300m"
     
  redis:
-    image: redis
-    container_name: redis
-    ports:
-      - "6379:6379"
+   image: redis:3.2
+   container_name: redis
+   command: redis-server --appendonly yes
+   volumes:
+    - "/opt/mall-env/custom-config/redis/data:/data" #数据文件挂载
+   ports:
+    - 6379:6379 
+      
  zookeeper:
     image: wurstmeister/zookeeper
     container_name: zook
     hostname: zook
     ports:
       - "2181:2181"
+      
  rabbitmq:
     image: rabbitmq:management
     ports:
