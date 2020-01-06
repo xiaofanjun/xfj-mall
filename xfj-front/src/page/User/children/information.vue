@@ -46,7 +46,16 @@
                 <div style="padding: 10px 0 ">头像预览</div>
                 <div class="btn">
                   <a href="javascript:;">重新选择</a>
-                  <input type="file" value="上传头像" @change="upimg($event)"></div>
+                  <input type="file" value="上传头像" @change="upimg($event)">
+                  <!-- <el-upload
+                     :action="null"
+                     :data="null"
+                     list-type="picture"
+                     :multiple="false"
+                   >
+                   </el-upload>-->
+
+                </div>
               </div>
               <div class="edit-r">
                 <div>

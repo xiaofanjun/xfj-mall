@@ -26,7 +26,8 @@ import {
   Select,
   Option,
   Tabs,
-  TabPane
+  TabPane,
+  Upload
 } from 'element-ui'
 // import { getStore } from '/utils/storage'
 import VueContentPlaceholders from 'vue-content-placeholders'
@@ -49,6 +50,7 @@ Vue.use(Option)
 Vue.use(Loading.directive)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Upload)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message

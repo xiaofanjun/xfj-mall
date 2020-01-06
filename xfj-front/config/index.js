@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/user/*': {
-        target: 'http://192.168.10.150:7080'
+        target: 'http://localhost:7080'
       },
       '/shopping/**': {
         target: 'http://192.168.10.150:6080'

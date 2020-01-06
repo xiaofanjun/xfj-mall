@@ -3,7 +3,7 @@ export const apis = {
   loginOut: '/user/loginOut',
   userInfo: '/user/login',
   register: '/user/register',
-  upload: '/user/imgaeUpload',
+  upload: '/user/imgaeUploadBase64',
   updateheadimage: '/user/updateheadimage',
   productHome: '/shopping/homepage',
   // 导航栏

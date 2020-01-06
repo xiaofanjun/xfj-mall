@@ -137,6 +137,14 @@ export default {
           this.init_geetest()
           return false
         }
+      }).catch(error => {
+        // 服务器响应超时处理
+        var len = error.stack.match('timeout').length
+        if (len > 0) {
+          this.logintxt = '登录'
+          this.init_geetest()
+          this.message('服务器响应超时，请稍后再试！！!')
+        }
       })
     },
     init_geetest: function () {

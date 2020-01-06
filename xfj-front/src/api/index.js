@@ -21,10 +21,6 @@ export const register = (params) => {
 export const upload = (params) => {
   return http.fetchPost(apis.upload, params)
 }
-// 修改头像
-export const updateheadimage = (params) => {
-  return http.fetchPost(apis.updateheadimage, params)
-}
 /* // 捐赠列表
 export const thanksList = (params) => {
   return http.fetchGet('/member/thanks', params)
