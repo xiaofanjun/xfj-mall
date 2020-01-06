@@ -41,19 +41,32 @@ public class ImageUtil {
      * @Param [imageData base64数据, fileName 文件名称]
      **/
     public String upLoadImageBase64(String imageData, String fileName) {
-        ByteArrayInputStream inputStream = null;
-        String suffix = null;//后缀名
-        try {
-            suffix = imageData.split("base64,")[0].split("image/")[1]
-                    .replaceAll(";", "").trim();
-            //去除不是图片的信息，解决图片打不开问题
-            byte[] byteData = Base64.decodeBase64(imageData.split("base64,")[1]);
-            inputStream = new ByteArrayInputStream(byteData);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-        return "http://" + uploadFile(inputStream, fileName + "." + suffix);
+        return "http://" + uploadFile(getInputStreamFromBase64(imageData),
+                fileName + "." + getFileSuffixName64(imageData));
+    }
+
+    /**
+     * @return java.lang.String
+     * @Author ZQ
+     * @Description 得到文件后缀名
+     * @Date 2020/1/5 18:48
+     * @Param [imageData]
+     **/
+    public static String getFileSuffixName64(String imageData) {
+        return imageData.split("base64,")[0].split("image/")[1]
+                .replaceAll(";", "").trim();
+    }
+
+    /**
+     * @return java.io.InputStream
+     * @Author ZQ
+     * @Description 从Base64 得到InputStream
+     * @Date 2020/1/5 18:50
+     * @Param [imageData]
+     **/
+    public static InputStream getInputStreamFromBase64(String imageData) {
+        byte[] byteData = Base64.decodeBase64(imageData.split("base64,")[1]);
+        return new ByteArrayInputStream(byteData);
     }
 
     /**

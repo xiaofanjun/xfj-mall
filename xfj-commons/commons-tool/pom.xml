@@ -96,6 +96,12 @@
             <artifactId>jsch</artifactId>
             <version>0.1.54</version>
         </dependency>
+        <!--使用MinIO 对象存储服务-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>3.0.10</version>
+        </dependency>
     </dependencies>
 
 </project>

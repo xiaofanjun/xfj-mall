@@ -46,7 +46,11 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
+  #MinIO 存储对象服务相关配置
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 10MB #限制文件上传大小为10M
 dubbo:
   application:
     name: user-service

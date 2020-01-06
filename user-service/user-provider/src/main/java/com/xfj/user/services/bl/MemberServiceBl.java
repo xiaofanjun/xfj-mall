@@ -1,7 +1,9 @@
 package com.xfj.user.services.bl;
 
 import com.xfj.commons.base.service.BaseService;
+import com.xfj.commons.tool.domain.MinIODO;
 import com.xfj.commons.tool.utils.ImageUtil;
+import com.xfj.commons.tool.utils.MinIOUtil;
 import com.xfj.user.IUserLoginService;
 import com.xfj.user.constants.SysRetCodeConstants;
 import com.xfj.user.converter.MemberConverter;

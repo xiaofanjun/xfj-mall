@@ -59,12 +59,12 @@ public class MemberController {
     /**
      * @return com.xfj.commons.result.ResponseData
      * @Author ZQ
-     * @Description 前端用户上传用户头像
+     * @Description 前端用户上传用户头像 （支持Base64 形式的）
      * <p>
      * @Date 2019/12/17 17:16
      * @Param []
      **/
-    @PostMapping("/imgaeUpload")
+    @PostMapping("/imgaeUploadBase64")
     public ResponseData uploadHead(@RequestBody HeadImageVO imageVO) {
         HeadImageRS headImageRS = memberService.updateHeadImage(imageVO);
         if (headImageRS.getCode().equals(SysRetCodeConstants.SUCCESS.getCode())) {

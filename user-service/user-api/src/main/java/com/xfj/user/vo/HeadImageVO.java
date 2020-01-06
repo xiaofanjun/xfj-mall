@@ -5,6 +5,7 @@ import com.xfj.commons.tool.exception.ValidateException;
 import com.xfj.user.constants.SysRetCodeConstants;
 import lombok.Data;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.bind.ValidationException;
 

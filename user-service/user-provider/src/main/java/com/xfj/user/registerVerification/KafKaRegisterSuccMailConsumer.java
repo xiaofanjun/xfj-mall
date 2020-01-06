@@ -18,7 +18,7 @@ import java.util.Map;
  * @Description 消费者，注册成功发送邮件
  * @Date 2019/12/5 8:56
  **/
-@Component
+//@Component
 @Slf4j
 public class KafKaRegisterSuccMailConsumer {
 

@@ -14,6 +14,7 @@ import java.util.Map;
  * @Version 1.0
  **/
 public class SystemConfigUtil {
+
     /**
      * @return java.util.Map<java.lang.String, java.lang.Object>
      * @Author ZQ
@@ -44,6 +45,39 @@ public class SystemConfigUtil {
                 String key = systemConfig.getModuleKey();
                 String value = systemConfig.getModuleValue();
                 if ("image_head_url".equals(key)) {
+                    map.put(key, value);
+                }
+            }
+        }
+        return map;
+    }
+
+    /**
+     * @return java.util.Map<java.lang.String, java.lang.Object>
+     * @Author ZQ
+     * @Description 获取MinIO 相关配置
+     * @Date 2020/1/4 19:00
+     * @Param [systemConfigs]
+     **/
+    public static Map<String, Object> getConfigMinIO(List<SystemConfig> systemConfigs) {
+        Map<String, Object> map = new HashMap<>();
+        for (SystemConfig systemConfig : systemConfigs) {
+            if ("200".equals(systemConfig.getModule())) {
+                String key = systemConfig.getModuleKey();
+                String value = systemConfig.getModuleValue();
+                if ("endpoint_host".equals(key)) {
+                    map.put(key, value);
+                }
+                if ("endpoint_port".equals(key)) {
+                    map.put(key, value);
+                }
+                if ("bucketName".equals(key)) {
+                    map.put(key, value);
+                }
+                if ("accessKey".equals(key)) {
+                    map.put(key, value);
+                }
+                if ("secretKey".equals(key)) {
                     map.put(key, value);
                 }
             }

@@ -8,7 +8,7 @@ services:
     - "20781:20781"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20781
     #绑定端口
@@ -21,7 +21,7 @@ services:
     - "20782:20782"     
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20782
     #绑定端口
@@ -35,7 +35,7 @@ services:
     - "20783:20783"       
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20783
     #绑定端口

@@ -9,7 +9,7 @@ services:
     - "20881:20881"
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20881
     #绑定端口
@@ -25,7 +25,7 @@ services:
     - "20871:20871"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20871
     #绑定端口
@@ -41,7 +41,7 @@ services:
     - "20861:20861"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20861
     #绑定端口
@@ -57,7 +57,7 @@ services:
     - "20851:20851"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20851
     #绑定端口
@@ -73,7 +73,7 @@ services:
     - "20841:20841"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20841
     #绑定端口
@@ -89,7 +89,7 @@ services:
     - "20831:20831"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20831
     #绑定端口
@@ -105,7 +105,7 @@ services:
     - "20821:20821"    
    environment:
     #注册到注册中心的IP，这里我们选择宿主机的IP
-    DUBBO_IP_TO_REGISTRY: 192.168.244.129
+    DUBBO_IP_TO_REGISTRY: 192.168.10.150
     #注册到注册中心的端口
     DUBBO_PORT_TO_REGISTRY: 20821
     #绑定端口
